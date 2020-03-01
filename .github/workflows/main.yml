@@ -283,7 +283,7 @@ jobs:
 
       - name: Configure, Build & Install
         run: |
-          cd vim-${{ env.vim_version }}
+          cd ${{ env.vim_version }}
           ./configure
           make
           ls -la
