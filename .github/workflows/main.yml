@@ -279,9 +279,7 @@ jobs:
         run: wget https://github.com/vim/vim/archive/${{ env.vim_version }}.tar.gz
 
       - name: Extract source code
-        run: |
-          ls -l
-          tar xzf vim-${{ env.vim_version }}.tar.gz
+        run: tar xzf ${{ env.vim_version }}.tar.gz
 
       - name: Configure, Build & Install
         run: |
