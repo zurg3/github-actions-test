@@ -266,6 +266,8 @@ jobs:
           ./configure
           make
           ls -la
+          sudo make install
+          nano --version
 
   electron-linux:
     runs-on: ubuntu-latest
