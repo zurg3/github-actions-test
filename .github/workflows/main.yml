@@ -275,7 +275,7 @@ jobs:
       vim_version: "8.2.0335"
     steps:
       - name: Get source code
-        run: wget https://github.com/vim/vim/archive/$v{{ env.vim_version }}.tar.gz
+        run: wget https://github.com/vim/vim/archive/v${{ env.vim_version }}.tar.gz
 
       - name: Extract source code
         run: tar xzf v${{ env.vim_version }}.tar.gz
