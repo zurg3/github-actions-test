@@ -369,35 +369,3 @@ jobs:
         with:
           name: test_gtk_app_linux
           path: test/path_to_artifact
-
-  snoop-linux:
-    runs-on: ubuntu-latest
-    needs: test_gtk_app
-    steps:
-      - name: Set up Python 3.8
-        uses: actions/setup-python@v1
-        with:
-          python-version: "3.8"
-
-      - name: Install Python packages
-        run: |
-          python --version
-          python -m pip install --upgrade pip
-          pip install pyinstaller
-      
-      - name: Prepare
-        run: |
-          git clone https://github.com/snooppr/snoop.git
-          cd snoop
-          python -m pip install -r requirements.txt
-
-      - name: Create binary
-        run: |
-          cd snoop
-          pyinstaller --onefile snoop.py
-      
-      - name: Upload artifact
-        uses: actions/upload-artifact@v1
-        with:
-          name: snoop_linux
-          path: snoop/dist
