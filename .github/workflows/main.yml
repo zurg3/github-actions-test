@@ -258,7 +258,7 @@ jobs:
       - name: Extract source code
         run: tar xzf nano-${{ env.nano_version }}.tar.gz
 
-      - name: Configure & Build
+      - name: Configure, Build & Install
         run: |
           cd nano-${{ env.nano_version }}
           sudo apt update
@@ -269,9 +269,30 @@ jobs:
           sudo make install
           nano --version
 
+  vim:
+    runs-on: ubuntu-latest
+    needs: [build-linux, build-win, python-linux, python-win, java-linux, java-win]
+    env:
+      vim_version: "v8.2.0335"
+    steps:
+      - name: Get source code
+        run: wget https://github.com/vim/vim/archive/${{ env.vim_version }}.tar.gz
+
+      - name: Extract source code
+        run: tar xzf vim-${{ env.vim_version }}.tar.gz
+
+      - name: Configure, Build & Install
+        run: |
+          cd vim-${{ env.vim_version }}
+          ./configure
+          make
+          ls -la
+          sudo make install
+          vim --version
+
   electron-linux:
     runs-on: ubuntu-latest
-    needs: nano
+    needs: [nano, vim]
     steps:
       - name: Set up Node.js
         uses: actions/setup-node@v1
@@ -298,7 +319,7 @@ jobs:
 
   electron-win:
     runs-on: windows-latest
-    needs: nano
+    needs: [nano, vim]
     steps:
       - name: Set up Node.js
         uses: actions/setup-node@v1
