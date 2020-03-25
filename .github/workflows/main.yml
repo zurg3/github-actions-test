@@ -369,3 +369,24 @@ jobs:
         with:
           name: test_gtk_app_linux
           path: test/path_to_artifact
+
+  download_test:
+    runs-on: ubuntu-latest
+    env:
+      download_link: "https://icculus.org/twilight/darkplaces/files/darkplacesenginewindowsonly20140513.zip"
+      file_name: "darkplacesenginewindowsonly20140513.zip"
+    steps:
+      - name: Create dir
+        run: mkdir path_to_artifact
+      
+      - name: Download
+        run: wget ${{ env.download_link }}
+      
+      - name: Move
+        run: mv ${{ env.file_name }} path_to_artifact/${{ env.file_name }}
+      
+      - name: Upload
+        uses: actions/upload-artifact@v1
+        with:
+          name: download_test
+          path: path_to_artifact
