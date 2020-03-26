@@ -390,3 +390,16 @@ jobs:
         with:
           name: download_test
           path: path_to_artifact
+
+  notepad-linux:
+    name: Notepad (Linux)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git Clone
+        run: git clone https://github.com/zurg3/test.git
+
+      - name: Build
+        run: |
+          cd test/notepad
+          qmake
+          ls -l
