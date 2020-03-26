@@ -407,4 +407,5 @@ jobs:
         run: |
           cd test/notepad
           qmake
+          make
           ls -l
