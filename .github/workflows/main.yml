@@ -423,3 +423,4 @@ jobs:
           nmake
           make
           dir
+        shell: cmd
