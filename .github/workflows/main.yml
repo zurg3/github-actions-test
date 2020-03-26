@@ -420,7 +420,6 @@ jobs:
       - name: Build
         run: |
           cd test\notepad
-          qmake
-          make
+          mingw32-make nodepad.pro
           dir
         shell: cmd
