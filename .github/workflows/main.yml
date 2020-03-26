@@ -409,3 +409,17 @@ jobs:
           qmake
           make
           ls -l
+          
+  notepad-win:
+    name: Notepad (Windows)
+    runs-on: windows-latest
+    steps:
+      - name: Git Clone
+        run: git clone https://github.com/zurg3/test.git
+
+      - name: Build
+        run: |
+          cd test\notepad
+          qmake
+          make
+          dir
