@@ -420,7 +420,7 @@ jobs:
       - name: Build
         run: |
           cd test\notepad
-          nmake
+          qmake
           make
           dir
         shell: cmd
