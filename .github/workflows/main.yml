@@ -21,6 +21,7 @@ jobs:
         run: |
           echo "Hello Message 1"
           echo "Hello Message 2"
+          echo "Hello Message 3"
           echo "App name: ${{ env.APP_NAME }}"
 
       - name: Print OS info
