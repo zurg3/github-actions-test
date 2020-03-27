@@ -370,30 +370,10 @@ jobs:
           name: test_gtk_app_linux
           path: test/path_to_artifact
 
-  download_test:
-    runs-on: ubuntu-latest
-    env:
-      download_link: "https://icculus.org/twilight/darkplaces/files/darkplacesenginewindowsonly20140513.zip"
-      file_name: "darkplacesenginewindowsonly20140513.zip"
-    steps:
-      - name: Create dir
-        run: mkdir path_to_artifact
-      
-      - name: Download
-        run: wget ${{ env.download_link }}
-      
-      - name: Move
-        run: mv ${{ env.file_name }} path_to_artifact/${{ env.file_name }}
-      
-      - name: Upload
-        uses: actions/upload-artifact@v1
-        with:
-          name: download_test
-          path: path_to_artifact
-
   notepad-linux:
     name: Notepad (Linux)
     runs-on: ubuntu-latest
+    needs: [electron-linux, electron-win]
     steps:
       - name: Git Clone
         run: git clone https://github.com/zurg3/test.git
@@ -409,17 +389,3 @@ jobs:
           qmake
           make
           ls -l
-          
-  notepad-win:
-    name: Notepad (Windows)
-    runs-on: windows-latest
-    steps:
-      - name: Git Clone
-        run: git clone https://github.com/zurg3/test.git
-
-      - name: Build
-        run: |
-          cd test\notepad
-          mingw32-make nodepad.pro
-          dir
-        shell: cmd
