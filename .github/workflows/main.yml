@@ -402,6 +402,7 @@ jobs:
         shell: cmd
         run: |
           cd test\notepad
-          mingw32-make notepad.pro
+          qmake -project -o main.pro main.cpp
+          qmake -makefile main.pro
           make
           dir
