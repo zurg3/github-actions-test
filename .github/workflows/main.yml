@@ -402,6 +402,6 @@ jobs:
         shell: cmd
         run: |
           cd test\notepad
-          nmake
+          nmake notepad.pro
           make
           dir
