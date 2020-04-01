@@ -402,6 +402,6 @@ jobs:
         shell: cmd
         run: |
           cd test\notepad
-          nmake notepad.pro
+          mingw32-make notepad.pro
           make
           dir
