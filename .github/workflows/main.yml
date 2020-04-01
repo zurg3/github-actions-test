@@ -399,6 +399,7 @@ jobs:
         run: git clone https://github.com/zurg3/test.git
 
       - name: Build
+        shell: cmd
         run: |
           cd test\notepad
           nmake
