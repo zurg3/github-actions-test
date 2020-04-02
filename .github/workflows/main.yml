@@ -374,7 +374,6 @@ jobs:
   notepad-linux:
     name: Notepad (Linux)
     runs-on: ubuntu-latest
-    needs: [electron-linux, electron-win]
     steps:
       - name: Git Clone
         run: git clone https://github.com/zurg3/test.git
