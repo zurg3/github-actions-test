@@ -387,6 +387,7 @@ jobs:
       - name: Build
         run: |
           cd test/notepad
+          qmake --version
           qmake
           make
           ls -l
