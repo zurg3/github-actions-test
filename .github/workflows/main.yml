@@ -390,7 +390,8 @@ jobs:
           qmake
           make
           ls -l
-  
+          ./notepad --version
+
   notepad-win:
     name: Notepad (Windows)
     runs-on: windows-latest
@@ -402,7 +403,6 @@ jobs:
         shell: cmd
         run: |
           cd test\notepad
-          qmake -project -o main.pro main.cpp
-          qmake -makefile main.pro
+          qmake
           make
           dir
