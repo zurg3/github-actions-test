@@ -430,6 +430,9 @@ jobs:
           mirror: 'http://mirrors.ocf.berkeley.edu/qt/'
           cached: 'false'
 
+      - name: Setup MSBuild.exe
+        uses: warrenbuckley/Setup-MSBuild@v1
+
       - name: Build
         shell: cmd
         run: |
