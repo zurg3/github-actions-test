@@ -407,8 +407,10 @@ jobs:
       - name: Build
         run: |
           cd test/notepad
+          mkdir build
+          cd build
           cmake --version
-          cmake .
+          cmake ..
           make
           ls -l
           ./notepad --version
