@@ -436,5 +436,5 @@ jobs:
           cd test\notepad
           cmake .
           cmake --build .
-          windeployqt
-          dir
+          windeployqt Debug
+          dir Debug
