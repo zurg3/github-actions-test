@@ -423,7 +423,7 @@ jobs:
       - name: Setup Qt5
         uses: jurplel/install-qt-action@v2
         with:
-          version: '5.12.7'
+          version: '5.14.1'
           host: 'windows'
           target: 'desktop'
           install-deps: 'true'
