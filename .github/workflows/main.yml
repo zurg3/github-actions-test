@@ -437,14 +437,8 @@ jobs:
           cmake .
           cmake --build .
 
-      - name: Create dir
-        run: mkdir path_to_artifact
-
-      - name: Move artifact
-        run: move test\notepad\Debug\notepad.exe path_to_artifact\notepad.exe
-
       - name: Upload artifact
         uses: actions/upload-artifact@v1
         with:
           name: notepad_win
-          path: path_to_artifact
+          path: test\notepad\Debug
