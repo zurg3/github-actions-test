@@ -437,5 +437,5 @@ jobs:
           cmake .
           cmake --build .
           dir
-          dir notepad.dir
-          dir x64
+          msbuild notepad.vcxproj
+          dir
