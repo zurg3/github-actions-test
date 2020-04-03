@@ -440,5 +440,4 @@ jobs:
           cmake .
           cmake --build .
           dir
-          msbuild notepad.vcxproj
-          dir
+          dir Debug
