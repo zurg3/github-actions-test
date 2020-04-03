@@ -371,8 +371,8 @@ jobs:
           name: test_gtk_app_linux
           path: test/path_to_artifact
 
-  notepad-linux:
-    name: Notepad (Linux)
+  notepad-linux-qmake:
+    name: Notepad (Linux) (qmake)
     runs-on: ubuntu-latest
     steps:
       - name: Git Clone
@@ -392,8 +392,29 @@ jobs:
           ls -l
           ./notepad --version
 
-  notepad-win:
-    name: Notepad (Windows)
+  notepad-linux-cmake:
+    name: Notepad (Linux) (cmake)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git Clone
+        run: git clone https://github.com/zurg3/test.git
+
+      - name: Prepare
+        run: |
+          sudo apt update
+          sudo apt install qt5-default
+
+      - name: Build
+        run: |
+          cd test/notepad
+          cmake --version
+          cmake .
+          make
+          ls -l
+          ./notepad --version
+
+  notepad-win-cmake:
+    name: Notepad (Windows) (cmake)
     runs-on: windows-latest
     steps:
       - name: Git Clone
@@ -403,6 +424,6 @@ jobs:
         shell: cmd
         run: |
           cd test\notepad
-          qmake
+          cmake .
           make
           dir
