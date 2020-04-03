@@ -431,6 +431,7 @@ jobs:
           cached: 'false'
 
       - name: Build
+        shell: cmd
         run: |
           cd test\notepad
           cmake .
