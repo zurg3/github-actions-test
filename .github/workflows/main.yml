@@ -420,7 +420,7 @@ jobs:
       - name: Git Clone
         run: git clone https://github.com/zurg3/test.git
       
-      - name: Install Qt
+      - name: Setup Qt5
         uses: jurplel/install-qt-action@v2
         with:
           version: '5.12.7'
@@ -430,14 +430,21 @@ jobs:
           mirror: 'http://mirrors.ocf.berkeley.edu/qt/'
           cached: 'false'
 
-      - name: Setup msbuild
-        uses: microsoft/setup-msbuild@v1.0.0
-
       - name: Build
         shell: cmd
         run: |
           cd test\notepad
           cmake .
           cmake --build .
-          dir
-          dir Debug
+
+      - name: Create dir
+        run: mkdir path_to_artifact
+
+      - name: Move artifact
+        run: move test\notepad\Debug\notepad.exe path_to_artifact\notepad.exe
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: notepad_win
+          path: path_to_artifact
