@@ -435,11 +435,11 @@ jobs:
         run: |
           cd test\notepad
           cmake .
-          cmake --build .
-          windeployqt Debug
+          cmake --build . --config Release
+          windeployqt Release
           
       - name: Upload artifact
         uses: actions/upload-artifact@v1
         with:
           name: notepad_win
-          path: test\notepad\Debug
+          path: test\notepad\Release
