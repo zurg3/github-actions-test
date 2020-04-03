@@ -413,6 +413,32 @@ jobs:
           make
           ls -l
 
+  notepad-win-qmake:
+    name: Notepad (Windows) (qmake)
+    runs-on: windows-latest
+    steps:
+      - name: Git Clone
+        run: git clone https://github.com/zurg3/test.git
+      
+      - name: Setup Qt5
+        uses: jurplel/install-qt-action@v2
+        with:
+          version: '5.12.7'
+          host: 'windows'
+          target: 'desktop'
+          install-deps: 'true'
+          mirror: 'http://mirrors.ocf.berkeley.edu/qt/'
+          cached: 'false'
+
+      - name: Build
+        shell: cmd
+        run: |
+          cd test\notepad
+          nmake clean
+          qmake -config release
+          nmake
+          dir
+
   notepad-win-cmake:
     name: Notepad (Windows) (cmake)
     runs-on: windows-latest
@@ -436,9 +462,3 @@ jobs:
           cd test\notepad
           cmake .
           cmake --build .
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v1
-        with:
-          name: notepad_win
-          path: test\notepad\Debug
