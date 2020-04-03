@@ -419,6 +419,16 @@ jobs:
     steps:
       - name: Git Clone
         run: git clone https://github.com/zurg3/test.git
+      
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v2
+        with:
+          version: '5.12.7'
+          host: 'windows'
+          target: 'desktop'
+          install-deps: 'true'
+          mirror: 'http://mirrors.ocf.berkeley.edu/qt/'
+          cached: 'false'
 
       - name: Build
         run: |
