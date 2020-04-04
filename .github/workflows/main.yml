@@ -441,7 +441,7 @@ jobs:
           cd test\notepad
           cmake .
           cmake --build . --config Release
-          windeployqt Release
+          windeployqt --no-translations Release
           
       - name: Upload artifact
         uses: actions/upload-artifact@v1
