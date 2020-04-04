@@ -23,6 +23,7 @@ jobs:
           echo "Hello Message 2"
           echo "Hello Message 3"
           echo "Hello Message 4"
+          echo "Hello Message 5"
           echo "App name: ${{ env.APP_NAME }}"
 
       - name: Print OS info
