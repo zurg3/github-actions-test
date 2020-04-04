@@ -431,6 +431,9 @@ jobs:
           mirror: 'http://mirrors.ocf.berkeley.edu/qt/'
           cached: 'false'
 
+      - name: Setup msbuild
+        uses: microsoft/setup-msbuild@v1.0.0
+
       - name: Build
         shell: cmd
         run: |
