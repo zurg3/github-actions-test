@@ -380,10 +380,15 @@ jobs:
       - name: Git Clone
         run: git clone https://github.com/zurg3/test.git
 
-      - name: Prepare
-        run: |
-          sudo apt update
-          sudo apt install qt5-default
+      - name: Setup Qt5
+        uses: jurplel/install-qt-action@v2
+        with:
+          version: '5.14.1'
+          host: 'linux'
+          target: 'desktop'
+          install-deps: 'true'
+          mirror: 'http://mirrors.ocf.berkeley.edu/qt/'
+          cached: 'false'
 
       - name: Build
         run: |
@@ -400,10 +405,15 @@ jobs:
       - name: Git Clone
         run: git clone https://github.com/zurg3/test.git
 
-      - name: Prepare
-        run: |
-          sudo apt update
-          sudo apt install qt5-default
+      - name: Setup Qt5
+        uses: jurplel/install-qt-action@v2
+        with:
+          version: '5.14.1'
+          host: 'linux'
+          target: 'desktop'
+          install-deps: 'true'
+          mirror: 'http://mirrors.ocf.berkeley.edu/qt/'
+          cached: 'false'
 
       - name: Build
         run: |
@@ -433,7 +443,7 @@ jobs:
           mirror: 'http://mirrors.ocf.berkeley.edu/qt/'
           cached: 'false'
 
-      - name: Setup msbuild
+      - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v1.0.0
 
       - name: Build
