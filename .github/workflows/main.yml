@@ -447,7 +447,6 @@ jobs:
         uses: microsoft/setup-msbuild@v1.0.0
 
       - name: Build
-        shell: cmd
         run: |
           cd test\notepad
           cmake .
