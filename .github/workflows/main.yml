@@ -430,7 +430,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Git Clone
-        run: git clone https://github.com/zurg3/test.git
+        run: git clone https://github.com/zurg3/notepad.git
       
       - name: Setup Qt5
         uses: jurplel/install-qt-action@v2
@@ -447,8 +447,10 @@ jobs:
 
       - name: Build
         run: |
-          cd test\notepad
-          cmake .
+          cd notepad
+          mkdir build
+          cd build
+          cmake ..
           cmake --build . --config Release
           windeployqt --no-translations Release
           
@@ -456,4 +458,4 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: notepad_win
-          path: test\notepad\Release
+          path: notepad\build\Release
