@@ -422,9 +422,8 @@ jobs:
           cd build
           cmake --version
           cmake ..
-          cmake --build . --config Release
+          cmake --build .
           ls -l
-          ls -l ..
 
   notepad-win-cmake:
     name: Notepad (Windows) (cmake)
