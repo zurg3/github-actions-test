@@ -424,6 +424,7 @@ jobs:
           cmake ..
           cmake --build .
           ls -l
+          sudo make install
 
   notepad-win-cmake:
     name: Notepad (Windows) (cmake)
