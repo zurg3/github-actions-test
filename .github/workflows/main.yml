@@ -346,3 +346,67 @@ jobs:
         with:
           name: ElectronQuickStart-win32-x64
           path: electron-quick-start\ElectronQuickStart-win32-x64
+
+  notepad-linux-cmake:
+    name: Notepad (Linux) (cmake)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git Clone
+        run: git clone https://github.com/zurg3/notepad.git
+
+      - name: Setup Qt5
+        uses: jurplel/install-qt-action@v2
+        with:
+          version: '5.14.1'
+          host: 'linux'
+          target: 'desktop'
+          install-deps: 'true'
+          mirror: 'http://mirrors.ocf.berkeley.edu/qt/'
+          cached: 'false'
+
+      - name: Build
+        run: |
+          cd notepad
+          mkdir build
+          cd build
+          cmake --version
+          cmake ..
+          cmake --build .
+          ls -l
+          sudo make install
+          notepad --version
+
+  notepad-win-cmake:
+    name: Notepad (Windows) (cmake)
+    runs-on: windows-latest
+    steps:
+      - name: Git Clone
+        run: git clone https://github.com/zurg3/notepad.git
+
+      - name: Setup Qt5
+        uses: jurplel/install-qt-action@v2
+        with:
+          version: '5.14.1'
+          host: 'windows'
+          target: 'desktop'
+          install-deps: 'true'
+          mirror: 'http://mirrors.ocf.berkeley.edu/qt/'
+          cached: 'false'
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v1.0.0
+
+      - name: Build
+        run: |
+          cd notepad
+          mkdir build
+          cd build
+          cmake ..
+          cmake --build . --config Release
+          dir Release
+          
+      - name: Upload artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: notepad_win
+          path: notepad\build\Release
