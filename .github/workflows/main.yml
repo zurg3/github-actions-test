@@ -366,5 +366,6 @@ jobs:
       - name: Generate WAD
         run: |
           cd Oblige-7.70-source
-          ./Oblige --batch OUTPUT.wad game=doom2 length=full theme=hell
+          wget https://raw.githubusercontent.com/zurg3/github-actions-test/master/OBLIGE/my_config.txt
+          ./Oblige --batch OUTPUT.wad --load my_config.txt
           ls -lh
