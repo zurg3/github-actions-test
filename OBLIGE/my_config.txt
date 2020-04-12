@@ -1,0 +1,66 @@
+-- CONFIG FILE : OBLIGE 7.70
+-- OBLIGE Level Maker (c) 2006-2017 Andrew Apted
+-- http://oblige.sourceforge.net
+
+---- Game Settings ----
+
+game = doom2
+engine = zdoom
+length = game
+theme = original
+
+---- Architecture ----
+
+-- size = regular
+size = large
+outdoors = mixed
+caves = mixed
+liquids = mixed
+hallways = mixed
+teleporters = mixed
+steepness = mixed
+
+---- Monsters ----
+
+-- mons = normal
+mons = more
+-- mons = heaps
+-- mons = nuts
+strength = weak
+-- strength = easier
+ramp_up = slow
+-- ramp_up = medium
+bosses = easier
+-- bosses = medium
+traps = mixed
+cages = mixed
+
+---- Pickups ----
+
+health = normal
+ammo = normal
+weapons = normal
+items = normal
+secrets = mixed
+
+---- Other Modules ----
+
+@doom_mon_control = 0
+
+@doom_weapon_control = 0
+
+@export_map = 0
+
+@misc = 0
+
+@music_swapper = 1
+
+@sky_generator = 1
+
+@small_spiderdemon = 1
+
+@stealth_mons = 0
+
+@zdoom_marines = 0
+
+-- END --
