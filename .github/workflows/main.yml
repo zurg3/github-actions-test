@@ -346,3 +346,9 @@ jobs:
         with:
           name: ElectronQuickStart-win32-x64
           path: electron-quick-start\ElectronQuickStart-win32-x64
+
+  oblige:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get source code
+        run: wget http://sourceforge.net/projects/oblige/files/Oblige/7.70/oblige-770-source.zip
