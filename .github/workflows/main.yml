@@ -349,6 +349,7 @@ jobs:
 
   oblige:
     runs-on: ubuntu-latest
+    needs: [electron-linux, electron-win]
     steps:
       - name: Get source code
         run: wget http://sourceforge.net/projects/oblige/files/Oblige/7.70/oblige-770-source.zip
@@ -367,5 +368,11 @@ jobs:
         run: |
           cd Oblige-7.70-source
           wget https://raw.githubusercontent.com/zurg3/github-actions-test/master/OBLIGE/my_config.txt
-          ./Oblige --batch OUTPUT.wad --load my_config.txt
-          ls -lh
+          mkdir oblige_wad
+          ./Oblige --batch oblige_wad/OUTPUT.wad --load my_config.txt
+
+      - name: Upload WAD
+        uses: actions/upload-artifact@v1
+        with:
+          name: oblige_wad
+          path: Oblige-7.70-source/oblige_wad
