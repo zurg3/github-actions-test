@@ -362,10 +362,9 @@ jobs:
           sudo apt update
           sudo apt install libfltk1.3-dev zlib1g-dev
           make
-          ls -l
 
-      - name: Test usage
+      - name: Generate WAD
         run: |
           cd Oblige-7.70-source
-          ./Oblige --batch OUTPUT.wad game=doom2 length=episode theme=hell
-          ls -l
+          ./Oblige --batch OUTPUT.wad game=doom2 length=full theme=hell
+          ls -lh
