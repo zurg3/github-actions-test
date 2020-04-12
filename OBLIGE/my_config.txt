@@ -11,8 +11,8 @@ theme = original
 
 ---- Architecture ----
 
--- size = regular
-size = large
+size = regular
+-- size = large
 outdoors = mixed
 caves = mixed
 liquids = mixed
