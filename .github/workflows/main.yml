@@ -353,11 +353,13 @@ jobs:
       - name: Get source code
         run: wget http://sourceforge.net/projects/oblige/files/Oblige/7.70/oblige-770-source.zip
 
-      - name: Unzip
+      - name: Extract source code
         run: unzip oblige-770-source.zip
 
       - name: Build
         run: |
           cd Oblige-7.70-source
+          sudo apt update
+          sudo apt install libfltk1.3-dev zlib1g-dev
           make
           ls -l
