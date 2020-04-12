@@ -352,3 +352,8 @@ jobs:
     steps:
       - name: Get source code
         run: wget http://sourceforge.net/projects/oblige/files/Oblige/7.70/oblige-770-source.zip
+
+      - name: Check
+        run: |
+          unzip oblige-770-source.zip
+          ls -l
