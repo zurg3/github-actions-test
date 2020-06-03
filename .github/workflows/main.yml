@@ -93,7 +93,8 @@ jobs:
       - name: Compile hello.cpp
         run: |
           g++ hello.cpp -Wall -static -static-libgcc -static-libstdc++ -o path_to_artifact\hello_cpp.exe
-          path_to_artifact\.\hello_cpp.exe
+          cd path_to_artifact
+          .\hello_cpp.exe
 
       - name: Upload artifact
         uses: actions/upload-artifact@v1
