@@ -5,7 +5,11 @@
 using namespace std;
 
 int main() {
+  int a = 64 * 64;
+  
   cout << "Hello, World!" << endl;
+  
+  cout << a << endl;
   
   return 0;
 }
