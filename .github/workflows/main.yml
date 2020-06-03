@@ -93,7 +93,7 @@ jobs:
       - name: Compile hello.cpp
         run: |
           g++ hello.cpp -Wall -static -static-libgcc -static-libstdc++ -o path_to_artifact\hello_cpp.exe
-          path_to_artifact\hello_cpp.exe
+          path_to_artifact\.\hello_cpp.exe
 
       - name: Upload artifact
         uses: actions/upload-artifact@v1
@@ -125,7 +125,7 @@ jobs:
         run: |
           cd test
           g++ unix_time.cpp -Wall -static -static-libgcc -static-libstdc++ -o unix_time_cpp.exe
-          dir
+          .\unix_time_cpp.exe 20
 
   python-linux:
     runs-on: ubuntu-latest
