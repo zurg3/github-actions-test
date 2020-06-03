@@ -125,7 +125,7 @@ jobs:
         run: |
           cd test
           g++ unix_time.cpp -Wall -static -static-libgcc -static-libstdc++ -o unix_time_cpp.exe
-          unix_time_cpp.exe 20
+          dir
 
   python-linux:
     runs-on: ubuntu-latest
