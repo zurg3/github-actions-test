@@ -37,6 +37,9 @@ jobs:
 
       - name: List current dir
         run: ls -la
+      
+      - name: Print CMake version
+        run: cmake --version
 
   deploy:
     runs-on: ubuntu-latest
