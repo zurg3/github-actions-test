@@ -38,7 +38,19 @@ jobs:
       - name: List current dir
         run: ls -la
       
-      - name: Print dev software versions
+      - name: Print dev software versions (before)
+        run: |
+          gcc -v
+          g++ -v
+          make -v
+          cmake --version
+      
+      - name: Update system
+        run: |
+          sudo apt update
+          sudo apt upgrade
+      
+      - name: Print dev software versions (after)
         run: |
           gcc -v
           g++ -v
