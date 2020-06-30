@@ -57,6 +57,16 @@ jobs:
           make -v
           cmake --version
 
+  matrix-test:
+    name: Linux (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-16.04, ubuntu-18.04, ubuntu-20.04]
+    steps:
+      - name: Print GCC version
+        run: gcc -v
+
   deploy:
     runs-on: ubuntu-latest
     needs: testing
