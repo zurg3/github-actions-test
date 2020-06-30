@@ -38,8 +38,12 @@ jobs:
       - name: List current dir
         run: ls -la
       
-      - name: Print CMake version
-        run: cmake --version
+      - name: Print dev software versions
+        run: |
+          gcc -v
+          g++ -v
+          make -v
+          cmake --version
 
   deploy:
     runs-on: ubuntu-latest
