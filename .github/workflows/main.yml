@@ -12,7 +12,7 @@ on:
 
 jobs:
   testing:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: Print Hello Message
         run: echo "This is Testing job."
@@ -37,35 +37,6 @@ jobs:
 
       - name: List current dir
         run: ls -la
-      
-      - name: Print dev software versions (before)
-        run: |
-          gcc -v
-          g++ -v
-          make -v
-          cmake --version
-      
-      - name: Update system
-        run: |
-          sudo apt update
-          sudo apt upgrade
-      
-      - name: Print dev software versions (after)
-        run: |
-          gcc -v
-          g++ -v
-          make -v
-          cmake --version
-
-  matrix-test:
-    name: Linux (${{ matrix.os }})
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-16.04, ubuntu-18.04, ubuntu-20.04]
-    steps:
-      - name: Print GCC version
-        run: gcc -v
 
   deploy:
     runs-on: ubuntu-latest
@@ -305,7 +276,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build-linux, build-win, python-linux, python-win, java-linux, java-win]
     env:
-      vim_version: "8.2.1080"
+      vim_version: "8.2.1100"
     steps:
       - name: Get source code
         run: wget https://github.com/vim/vim/archive/v${{ env.vim_version }}.tar.gz
