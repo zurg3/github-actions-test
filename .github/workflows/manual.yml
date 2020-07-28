@@ -1,54 +1,31 @@
 name: GitHub-Actions-Test-Manual-Trigger
 
-on:
-  workflow_dispatch:
-    inputs:
-      notepad_release:
-        description: "Notepad release"
-        required: true
-      qt_version:
-        description: "Qt version"
-        required: true
+on: workflow_dispatch
 
 jobs:
-  test_job:
+  oblige:
     runs-on: ubuntu-latest
     steps:
-      - name: Print message
-        run: echo "Hello, World!"
+      - name: Get source code
+        run: wget http://sourceforge.net/projects/oblige/files/Oblige/7.70/oblige-770-source.zip
 
-  notepad:
-    runs-on: windows-latest
-    steps:
-      - name: Git Clone
-        uses: actions/checkout@v2
-        with:
-          repository: zurg3/notepad
-          path: notepad
-          ref: ${{ github.event.inputs.notepad_release }}
-
-      - name: Setup Qt5
-        uses: jurplel/install-qt-action@v2
-        with:
-          version: ${{ github.event.inputs.qt_version }}
-          host: "windows"
-          target: "desktop"
-          install-deps: "true"
-          mirror: "http://mirrors.ocf.berkeley.edu/qt/"
-          cached: "false"
-
-      - name: Setup MSBuild
-        uses: microsoft/setup-msbuild@v1
+      - name: Extract source code
+        run: unzip oblige-770-source.zip
 
       - name: Build
         run: |
-          mkdir build
-          cd build
-          cmake ..
-          cmake --build . --config Release
-          windeployqt --no-translations Release
-      - name: Upload artifact
+          cd Oblige-7.70-source
+          sudo apt update
+          sudo apt install libfltk1.3-dev zlib1g-dev
+          make
+      - name: Generate WAD
+        run: |
+          cd Oblige-7.70-source
+          wget https://raw.githubusercontent.com/zurg3/github-actions-test/master/OBLIGE/my_config.txt
+          mkdir oblige_wad
+          ./Oblige --batch oblige_wad/OUTPUT.wad --load my_config.txt
+      - name: Upload WAD
         uses: actions/upload-artifact@v1
         with:
-          name: notepad-${{ github.event.inputs.notepad_release }}-win32-x64
-          path: build\Release
+          name: oblige_wad
+          path: Oblige-7.70-source/oblige_wad
