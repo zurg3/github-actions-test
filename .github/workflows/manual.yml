@@ -3,8 +3,11 @@ name: GitHub-Actions-Test-Manual-Trigger
 on:
   workflow_dispatch:
     inputs:
-      vim_version:
-        description: "vim version"
+      notepad_release:
+        description: "Notepad release"
+        required: true
+      qt_version:
+        description: "Qt version"
         required: true
 
 jobs:
@@ -14,20 +17,37 @@ jobs:
       - name: Print message
         run: echo "Hello, World!"
 
-  vim:
-    runs-on: ubuntu-latest
+  notepad:
+    runs-on: windows-latest
     steps:
-      - name: Get source code
-        run: wget https://github.com/vim/vim/archive/v${{ github.event.inputs.vim_version }}.tar.gz
+      - name: Git Clone
+        uses: actions/checkout@v2
+        with:
+          repository: zurg3/notepad
+          path: notepad
 
-      - name: Extract source code
-        run: tar xzf v${{ github.event.inputs.vim_version }}.tar.gz
+      - name: Setup Qt5
+        uses: jurplel/install-qt-action@v2
+        with:
+          version: ${{ github.event.inputs.qt_version }}
+          host: "windows"
+          target: "desktop"
+          install-deps: "true"
+          mirror: "http://mirrors.ocf.berkeley.edu/qt/"
+          cached: "false"
 
-      - name: Configure, Build & Install
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v1
+
+      - name: Build
         run: |
-          cd vim-${{ github.event.inputs.vim_version }}
-          ./configure
-          make
-          ls -la
-          sudo make install
-          vim --version
+          mkdir build
+          cd build
+          cmake ..
+          cmake --build . --config Release
+          windeployqt --no-translations Release
+      - name: Upload artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: notepad-${{ github.event.inputs.notepad_release }}-win32-x64
+          path: build\Release
