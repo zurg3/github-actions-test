@@ -25,6 +25,7 @@ jobs:
         with:
           repository: zurg3/notepad
           path: notepad
+          ref: ${{ github.event.inputs.notepad_release }}
 
       - name: Setup Qt5
         uses: jurplel/install-qt-action@v2
