@@ -1,6 +1,11 @@
 name: GitHub-Actions-Test-Manual-Trigger
 
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+    inputs:
+      vim_version:
+        description: "vim version"
+        required: true
 
 jobs:
   test_job:
@@ -8,3 +13,21 @@ jobs:
     steps:
       - name: Print message
         run: echo "Hello, World!"
+
+  vim:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get source code
+        run: wget https://github.com/vim/vim/archive/v${{ github.event.inputs.vim_version }}.tar.gz
+
+      - name: Extract source code
+        run: tar xzf v${{ github.event.inputs.vim_version }}.tar.gz
+
+      - name: Configure, Build & Install
+        run: |
+          cd vim-${{ github.event.inputs.vim_version }}
+          ./configure
+          make
+          ls -la
+          sudo make install
+          vim --version
