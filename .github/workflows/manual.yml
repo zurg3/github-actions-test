@@ -25,7 +25,7 @@ jobs:
           mkdir oblige_wad
           ./Oblige --batch oblige_wad/OUTPUT.wad --load my_config.txt
       - name: Upload WAD
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         with:
           name: oblige_wad
           path: Oblige-7.70-source/oblige_wad
