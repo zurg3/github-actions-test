@@ -22,8 +22,6 @@ jobs:
           echo "Hello Message 1"
           echo "Hello Message 2"
           echo "Hello Message 3"
-          echo "Hello Message 4"
-          echo "Hello Message 5"
           echo "App name: ${{ env.APP_NAME }}"
 
       - name: Print OS info
@@ -109,7 +107,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Set up Python 3.8
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@v2
         with:
           python-version: "3.8"
 
@@ -145,16 +143,22 @@ jobs:
         run: rm dist/*
 
   python-win:
+    name: python-win-${{ matrix.python_arch }}
     runs-on: windows-latest
     needs: deploy
+    strategy:
+      matrix:
+        python_arch: [x86, x64]
+      fail-fast: false
     steps:
       - name: Git Clone
         uses: actions/checkout@v2
 
-      - name: Set up Python 3.8
-        uses: actions/setup-python@v1
+      - name: Set up Python 3.8 (${{ matrix.python_arch }})
+        uses: actions/setup-python@v2
         with:
           python-version: "3.8"
+          architecture: ${{ matrix.python_arch }}
 
       - name: Install Python packages
         run: |
@@ -169,7 +173,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v1
         with:
-          name: hello_py_win
+          name: hello_py_win_${{ matrix.python_arch }}
           path: dist
 
       - name: Clean up
@@ -181,7 +185,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v1
         with:
-          name: calc_py_win
+          name: calc_py_win_${{ matrix.python_arch }}
           path: dist
 
       - name: Clean up
