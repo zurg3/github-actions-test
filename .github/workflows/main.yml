@@ -309,7 +309,11 @@ jobs:
 
       - name: Build & Install
         run: |
-          ls -l
+          cd rig-1.12
+          make
+          ls -la
+          sudo make install
+          rig
 
   electron-linux:
     runs-on: ubuntu-latest
