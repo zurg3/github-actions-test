@@ -368,3 +368,12 @@ jobs:
         with:
           name: ElectronQuickStart-win32-x64
           path: electron-quick-start\ElectronQuickStart-win32-x64
+
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sync mirror - vim
+        run: |
+          git clone --mirror https://github.com/vim/vim.git vim
+          cd vim
+          git push --mirror https://github.com/zurg3/vim.git
