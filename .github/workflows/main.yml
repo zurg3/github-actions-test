@@ -376,4 +376,4 @@ jobs:
         run: |
           git clone --mirror https://github.com/vim/vim.git vim
           cd vim
-          git push --mirror https://github.com/zurg3/vim.git
+          git push --mirror https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/zurg3/vim.git
