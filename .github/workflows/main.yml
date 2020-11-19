@@ -374,6 +374,11 @@ jobs:
     steps:
       - name: Sync mirror - vim
         run: |
-          git clone --mirror https://github.com/vim/vim.git vim
+          git clone https://github.com/zurg3/vim.git vim
           cd vim
-          git push --mirror https://${{ secrets.GITHUB_TOKEN }}@github.com/zurg3/vim.git
+          git remote add upstream https://github.com/vim/vim.git
+          git fetch upstream
+          git checkout master
+          git merge upstream/main
+          git push origin --all
+          git push origin --tags
