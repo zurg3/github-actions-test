@@ -330,6 +330,8 @@ jobs:
       - name: Configure, Build & Install
         run: |
           cd git-${{ env.git_version }}
+          sudo apt update
+          sudo apt install gettext
           autoconf
           ./configure
           make
