@@ -280,7 +280,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build-linux, build-win, python-linux, python-win, java-linux, java-win]
     env:
-      vim_version: "8.2.1970"
+      vim_version: "8.2.2000"
     steps:
       - name: Get source code
         run: wget https://github.com/vim/vim/archive/v${{ env.vim_version }}.tar.gz
@@ -368,18 +368,3 @@ jobs:
         with:
           name: ElectronQuickStart-win32-x64
           path: electron-quick-start\ElectronQuickStart-win32-x64
-
-  sync:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Sync mirror - vim
-        run: |
-          git clone https://github.com/zurg3/vim.git vim
-          cd vim
-          git remote set-url origin https://zurg3:${{ secrets.GITHUB_TOKEN }}@github.com/zurg3/vim.git
-          git remote add upstream https://github.com/vim/vim.git
-          git fetch upstream
-          git checkout master
-          git merge upstream/master
-          git push origin --all
-          git push origin --tags
