@@ -352,7 +352,6 @@ jobs:
         run: |
           git clone https://github.com/electron/electron-quick-start.git
           cd electron-quick-start
-          git pull
           npm install
           sudo npm install -g electron-packager
 
