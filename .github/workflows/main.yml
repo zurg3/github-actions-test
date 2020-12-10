@@ -257,7 +257,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build-linux, build-win, python-linux, python-win, java-linux, java-win]
     env:
-      nano_version: "5.3"
+      nano_version: "5.4"
     steps:
       - name: Get source code
         run: wget https://ftp.gnu.org/gnu/nano/nano-${{ env.nano_version }}.tar.gz
@@ -280,7 +280,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build-linux, build-win, python-linux, python-win, java-linux, java-win]
     env:
-      vim_version: "8.2.2070"
+      vim_version: "8.2.2100"
     steps:
       - name: Get source code
         run: wget https://github.com/vim/vim/archive/v${{ env.vim_version }}.tar.gz
