@@ -392,14 +392,3 @@ jobs:
         with:
           name: ElectronQuickStart-win32-x64
           path: electron-quick-start\ElectronQuickStart-win32-x64
-
-  tdesktop:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Git Clone
-        run: git clone https://github.com/telegramdesktop/tdesktop.git
-
-      - name: Git Log
-        run: |
-          cd tdesktop
-          git log
