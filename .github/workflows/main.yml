@@ -302,14 +302,14 @@ jobs:
     needs: [build-linux, build-win, python-linux, python-win, java-linux, java-win]
     steps:
       - name: Get source code
-        run: wget https://github.com/EinBaum/rig/archive/1.12.tar.gz
+        run: wget https://sourceforge.net/projects/rig/files/rig/1.11/rig-1.11.tar.gz
 
       - name: Extract source code
-        run: tar xzf 1.12.tar.gz
+        run: tar xzf rig-1.11.tar.gz
 
       - name: Build & Install
         run: |
-          cd rig-1.12
+          cd rig-1.11
           make
           ls -la
           sudo make install
