@@ -280,7 +280,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build-linux, build-win, python-linux, python-win, java-linux, java-win]
     env:
-      vim_version: "8.2.2160"
+      vim_version: "8.2.2240"
     steps:
       - name: Get source code
         run: wget https://github.com/vim/vim/archive/v${{ env.vim_version }}.tar.gz
@@ -301,7 +301,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build-linux, build-win, python-linux, python-win, java-linux, java-win]
     env:
-      git_version: "2.29.2"
+      git_version: "2.30.0"
     steps:
       - name: Get source code
         run: wget https://github.com/git/git/archive/v${{ env.git_version }}.tar.gz
