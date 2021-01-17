@@ -405,3 +405,22 @@ jobs:
             cmake/build/one
             cmake/build/two
             cmake/build/three
+
+  cmake-project-win:
+    runs-on: windows-latest
+    needs: deploy
+    steps:
+      - name: Git Clone
+        uses: actions/checkout@v2
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v1
+
+      - name: Build
+        run: |
+          cd cmake
+          mkdir build
+          cd build
+          cmake ..
+          cmake --build . --config Release --target all
+          dir
