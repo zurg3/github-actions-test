@@ -12,9 +12,13 @@ if (UNIX)
 endif (UNIX)
 
 if (WIN32)
+  set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded")
+
   add_executable(one one.cpp)
   add_executable(two two.cpp)
   add_executable(three three.cpp)
 
-  set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded")
+  # set_property(TARGET one PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreaded")
+  # set_property(TARGET two PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreaded")
+  # set_property(TARGET three PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreaded")
 endif (WIN32)
