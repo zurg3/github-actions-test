@@ -12,9 +12,9 @@ if (UNIX)
 endif (UNIX)
 
 if (WIN32)
-  add_executable(one WIN32 one.cpp)
-  add_executable(two WIN32 two.cpp)
-  add_executable(three WIN32 three.cpp)
+  add_executable(one one.cpp)
+  add_executable(two two.cpp)
+  add_executable(three three.cpp)
 
   target_link_libraries(one PUBLIC -static)
   target_link_libraries(two PUBLIC -static)
