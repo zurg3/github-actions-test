@@ -423,5 +423,10 @@ jobs:
           cd build
           cmake ..
           cmake --build . --config Release --target ALL_BUILD
-          dir
-          dir Release
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: cmake_project_win
+          path: |
+            cmake\build\Release
