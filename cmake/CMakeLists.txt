@@ -16,7 +16,5 @@ if (WIN32)
   add_executable(two two.cpp)
   add_executable(three three.cpp)
 
-  target_link_libraries(one PUBLIC -static)
-  target_link_libraries(two PUBLIC -static)
-  target_link_libraries(three PUBLIC -static)
+  set_property(TARGET one PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Release>:Release>")
 endif (WIN32)
