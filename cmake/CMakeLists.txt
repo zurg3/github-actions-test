@@ -16,5 +16,5 @@ if (WIN32)
   add_executable(two two.cpp)
   add_executable(three three.cpp)
 
-  set_property(TARGET one PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Release>:Release>")
+  set_property(TARGET one PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreaded")
 endif (WIN32)
