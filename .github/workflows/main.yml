@@ -422,5 +422,6 @@ jobs:
           mkdir build
           cd build
           cmake ..
-          cmake --build . --config Release --target one two three
+          cmake --build . --config Release --target ALL_BUILD
           dir
+          dir Release
