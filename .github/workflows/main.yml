@@ -392,10 +392,9 @@ jobs:
 
       - name: Test
         run: |
-          cd cmake/build
-          ./one
-          ./two
-          ./three
+          cmake/build/./one
+          cmake/build/./two
+          cmake/build/./three
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
