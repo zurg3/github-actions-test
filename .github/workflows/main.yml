@@ -376,7 +376,7 @@ jobs:
           path: electron-quick-start\ElectronQuickStart-win32-x64
 
   cmake-project-linux:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     needs: deploy
     steps:
       - name: Git Clone
