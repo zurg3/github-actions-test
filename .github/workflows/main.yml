@@ -117,34 +117,20 @@ jobs:
       - name: Create binary for hello.py
         run: pyinstaller --onefile hello.py
 
-      - name: Check
-        run: |
-          ls -lh dist
-
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
           name: hello_py_linux
-          path: dist
-
-      - name: Clean up
-        run: rm dist/*
+          path: dist/hello
 
       - name: Create binary for calc.py
         run: pyinstaller --onefile calc.py
-
-      - name: Check
-        run: |
-          ls -lh dist
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
           name: calc_py_linux
-          path: dist
-
-      - name: Clean up
-        run: rm dist/*
+          path: dist/calc
 
   python-win:
     runs-on: windows-latest
@@ -168,34 +154,20 @@ jobs:
       - name: Create .exe for hello.py
         run: pyinstaller --onefile hello.py
 
-      - name: Check
-        run: |
-          dir dist
-
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
           name: hello_py_win
-          path: dist
-
-      - name: Clean up
-        run: del dist\*
+          path: dist\hello.exe
 
       - name: Create .exe for calc.py
         run: pyinstaller --onefile calc.py
-
-      - name: Check
-        run: |
-          dir dist
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
           name: calc_py_win
-          path: dist
-
-      - name: Clean up
-        run: del dist\*
+          path: dist\calc.exe
 
   java-linux:
     runs-on: ubuntu-latest
