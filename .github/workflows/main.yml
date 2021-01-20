@@ -22,6 +22,8 @@ jobs:
           echo "Hello Message 1"
           echo "Hello Message 2"
           echo "Hello Message 3"
+          echo "Hello Message 4"
+          echo "Hello Message 5"
           echo "App name: ${{ env.APP_NAME }}"
 
       - name: Print OS info
@@ -64,19 +66,16 @@ jobs:
       - name: Git Clone
         uses: actions/checkout@v2
 
-      - name: Create dir
-        run: mkdir path_to_artifact
-
       - name: Compile hello.cpp
         run: |
-          g++ hello.cpp -o path_to_artifact/hello_cpp
-          path_to_artifact/./hello_cpp
+          g++ hello.cpp -o hello_cpp
+          ./hello_cpp
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
           name: hello_cpp_linux
-          path: path_to_artifact
+          path: hello_cpp
 
   build-win:
     runs-on: windows-latest
@@ -85,19 +84,16 @@ jobs:
       - name: Git Clone
         uses: actions/checkout@v2
 
-      - name: Create dir
-        run: mkdir path_to_artifact
-
       - name: Compile hello.cpp
         run: |
-          g++ hello.cpp -static -o path_to_artifact\hello_cpp.exe
-          path_to_artifact\.\hello_cpp.exe
+          g++ hello.cpp -static -o hello_cpp.exe
+          hello_cpp.exe
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
           name: hello_cpp_win
-          path: path_to_artifact
+          path: hello_cpp.exe
 
   python-linux:
     runs-on: ubuntu-latest
@@ -121,6 +117,10 @@ jobs:
       - name: Create binary for hello.py
         run: pyinstaller --onefile hello.py
 
+      - name: Check
+        run: |
+          ls -lh dist
+
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
@@ -132,6 +132,10 @@ jobs:
 
       - name: Create binary for calc.py
         run: pyinstaller --onefile calc.py
+
+      - name: Check
+        run: |
+          ls -lh dist
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
@@ -164,6 +168,10 @@ jobs:
       - name: Create .exe for hello.py
         run: pyinstaller --onefile hello.py
 
+      - name: Check
+        run: |
+          dir dist
+
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
@@ -175,6 +183,10 @@ jobs:
 
       - name: Create .exe for calc.py
         run: pyinstaller --onefile calc.py
+
+      - name: Check
+        run: |
+          dir dist
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
@@ -198,23 +210,17 @@ jobs:
           java-version: "14"
           architecture: "x64"
 
-      - name: Create dir
-        run: mkdir path_to_artifact
-
       - name: Compile
         run: javac MultiplicationTable.java
 
       - name: Test
         run: java MultiplicationTable
 
-      - name: Move artifact
-        run: mv MultiplicationTable.class path_to_artifact/MultiplicationTable.class
-
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
           name: MultiplicationTable_java_linux
-          path: path_to_artifact
+          path: MultiplicationTable.class
 
   java-win:
     runs-on: windows-latest
@@ -229,145 +235,17 @@ jobs:
           java-version: "8"
           architecture: "x64"
 
-      - name: Create dir
-        run: mkdir path_to_artifact
-
       - name: Compile
         run: javac MultiplicationTable.java
 
       - name: Test
         run: java MultiplicationTable
 
-      - name: Move artifact
-        run: move MultiplicationTable.class path_to_artifact\MultiplicationTable.class
-
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
           name: MultiplicationTable_java_win
-          path: path_to_artifact
-
-  nano:
-    runs-on: ubuntu-latest
-    needs: [build-linux, build-win, python-linux, python-win, java-linux, java-win]
-    env:
-      nano_version: "5.5"
-    steps:
-      - name: Get source code
-        run: wget https://ftp.gnu.org/gnu/nano/nano-${{ env.nano_version }}.tar.gz
-
-      - name: Extract source code
-        run: tar xzf nano-${{ env.nano_version }}.tar.gz
-
-      - name: Configure, Build & Install
-        run: |
-          cd nano-${{ env.nano_version }}
-          sudo apt update
-          sudo apt install libncursesw5-dev
-          ./configure
-          make
-          ls -la
-          sudo make install
-          nano --version
-
-  vim:
-    runs-on: ubuntu-latest
-    needs: [build-linux, build-win, python-linux, python-win, java-linux, java-win]
-    env:
-      vim_version: "8.2.2360"
-    steps:
-      - name: Get source code
-        run: wget https://github.com/vim/vim/archive/v${{ env.vim_version }}.tar.gz
-
-      - name: Extract source code
-        run: tar xzf v${{ env.vim_version }}.tar.gz
-
-      - name: Configure, Build & Install
-        run: |
-          cd vim-${{ env.vim_version }}
-          ./configure
-          make
-          ls -la
-          sudo make install
-          vim --version
-
-  git:
-    runs-on: ubuntu-latest
-    needs: [build-linux, build-win, python-linux, python-win, java-linux, java-win]
-    env:
-      git_version: "2.30.0"
-    steps:
-      - name: Get source code
-        run: wget https://github.com/git/git/archive/v${{ env.git_version }}.tar.gz
-
-      - name: Extract source code
-        run: tar xzf v${{ env.git_version }}.tar.gz
-
-      - name: Configure, Build & Install
-        run: |
-          cd git-${{ env.git_version }}
-          sudo apt update
-          sudo apt install gettext
-          autoconf
-          ./configure
-          make
-          ls -la
-          sudo make install
-          git --version
-
-  electron-linux:
-    runs-on: ubuntu-latest
-    needs: [nano, vim]
-    steps:
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: "14"
-
-      - name: Prepare
-        run: |
-          git clone https://github.com/electron/electron-quick-start.git
-          cd electron-quick-start
-          npm install
-          sudo npm install -g electron-packager
-
-      - name: Build
-        run: |
-          cd electron-quick-start
-          electron-packager . ElectronQuickStart --platform=linux --arch=x64
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: ElectronQuickStart-linux-x64
-          path: electron-quick-start/ElectronQuickStart-linux-x64
-
-  electron-win:
-    runs-on: windows-latest
-    needs: [nano, vim]
-    steps:
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: "14"
-
-      - name: Prepare
-        run: |
-          git clone https://github.com/electron/electron-quick-start.git
-          cd electron-quick-start
-          npm install
-          npm install -g electron-packager@electron/electron-packager
-
-      - name: Build
-        run: |
-          cd electron-quick-start
-          electron-packager . ElectronQuickStart --platform=win32 --arch=x64
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: ElectronQuickStart-win32-x64
-          path: electron-quick-start\ElectronQuickStart-win32-x64
+          path: MultiplicationTable.class
 
   cmake-project-linux:
     runs-on: ubuntu-20.04
@@ -470,3 +348,125 @@ jobs:
             cmake\build\one.exe
             cmake\build\two.exe
             cmake\build\three.exe
+
+  nano:
+    runs-on: ubuntu-latest
+    needs: [build-linux, build-win, python-linux, python-win, java-linux, java-win, cmake-project-linux, cmake-project-win-msvc-x86, cmake-project-win-msvc-x64, cmake-project-win-gcc]
+    env:
+      nano_version: "5.5"
+    steps:
+      - name: Get source code
+        run: wget https://ftp.gnu.org/gnu/nano/nano-${{ env.nano_version }}.tar.gz
+
+      - name: Extract source code
+        run: tar xzf nano-${{ env.nano_version }}.tar.gz
+
+      - name: Configure, Build & Install
+        run: |
+          cd nano-${{ env.nano_version }}
+          sudo apt update
+          sudo apt install libncursesw5-dev
+          ./configure
+          make
+          ls -la
+          sudo make install
+          nano --version
+
+  vim:
+    runs-on: ubuntu-latest
+    needs: [build-linux, build-win, python-linux, python-win, java-linux, java-win, cmake-project-linux, cmake-project-win-msvc-x86, cmake-project-win-msvc-x64, cmake-project-win-gcc]
+    env:
+      vim_version: "8.2.2360"
+    steps:
+      - name: Get source code
+        run: wget https://github.com/vim/vim/archive/v${{ env.vim_version }}.tar.gz
+
+      - name: Extract source code
+        run: tar xzf v${{ env.vim_version }}.tar.gz
+
+      - name: Configure, Build & Install
+        run: |
+          cd vim-${{ env.vim_version }}
+          ./configure
+          make
+          ls -la
+          sudo make install
+          vim --version
+
+  git:
+    runs-on: ubuntu-latest
+    needs: [build-linux, build-win, python-linux, python-win, java-linux, java-win, cmake-project-linux, cmake-project-win-msvc-x86, cmake-project-win-msvc-x64, cmake-project-win-gcc]
+    env:
+      git_version: "2.30.0"
+    steps:
+      - name: Get source code
+        run: wget https://github.com/git/git/archive/v${{ env.git_version }}.tar.gz
+
+      - name: Extract source code
+        run: tar xzf v${{ env.git_version }}.tar.gz
+
+      - name: Configure, Build & Install
+        run: |
+          cd git-${{ env.git_version }}
+          sudo apt update
+          sudo apt install gettext
+          autoconf
+          ./configure
+          make
+          ls -la
+          sudo make install
+          git --version
+
+  electron-linux:
+    runs-on: ubuntu-latest
+    needs: [nano, vim, git]
+    steps:
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14"
+
+      - name: Prepare
+        run: |
+          git clone https://github.com/electron/electron-quick-start.git
+          cd electron-quick-start
+          npm install
+          sudo npm install -g electron-packager
+
+      - name: Build
+        run: |
+          cd electron-quick-start
+          electron-packager . ElectronQuickStart --platform=linux --arch=x64
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: ElectronQuickStart-linux-x64
+          path: electron-quick-start/ElectronQuickStart-linux-x64
+
+  electron-win:
+    runs-on: windows-latest
+    needs: [nano, vim, git]
+    steps:
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14"
+
+      - name: Prepare
+        run: |
+          git clone https://github.com/electron/electron-quick-start.git
+          cd electron-quick-start
+          npm install
+          npm install -g electron-packager@electron/electron-packager
+
+      - name: Build
+        run: |
+          cd electron-quick-start
+          electron-packager . ElectronQuickStart --platform=win32 --arch=x64
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: ElectronQuickStart-win32-x64
+          path: electron-quick-start\ElectronQuickStart-win32-x64
