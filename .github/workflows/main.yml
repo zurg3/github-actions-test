@@ -143,22 +143,16 @@ jobs:
         run: rm dist/*
 
   python-win:
-    name: python-win-${{ matrix.python_arch }}
     runs-on: windows-latest
     needs: deploy
-    strategy:
-      matrix:
-        python_arch: [x86, x64]
-      fail-fast: false
     steps:
       - name: Git Clone
         uses: actions/checkout@v2
 
-      - name: Set up Python 3.8 (${{ matrix.python_arch }})
+      - name: Set up Python 3.8
         uses: actions/setup-python@v2
         with:
           python-version: "3.8"
-          architecture: ${{ matrix.python_arch }}
 
       - name: Install Python packages
         run: |
@@ -173,7 +167,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
-          name: hello_py_win_${{ matrix.python_arch }}
+          name: hello_py_win
           path: dist
 
       - name: Clean up
@@ -185,7 +179,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
-          name: calc_py_win_${{ matrix.python_arch }}
+          name: calc_py_win
           path: dist
 
       - name: Clean up
@@ -420,10 +414,14 @@ jobs:
           cd cmake
           mkdir build
           cd build
-          # cmake ..
           cmake .. -G "Visual Studio 16 2019" -A Win32
           cmake --build . --config Release --target ALL_BUILD
-          dir Release
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: cmake_project_win_msvc_x86
+          path: cmake\build\Release
 
   cmake-project-win-msvc-x64:
     runs-on: windows-latest
@@ -440,12 +438,16 @@ jobs:
           cd cmake
           mkdir build
           cd build
-          # cmake ..
           cmake .. -G "Visual Studio 16 2019" -A x64
           cmake --build . --config Release --target ALL_BUILD
-          dir Release
 
-  cmake-project-win-mingw:
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: cmake_project_win_msvc_x64
+          path: cmake\build\Release
+
+  cmake-project-win-gcc:
     runs-on: windows-latest
     needs: deploy
     steps:
@@ -457,7 +459,14 @@ jobs:
           cd cmake
           mkdir build
           cd build
-          # cmake ..
           cmake .. -G "MinGW Makefiles"
           cmake --build . --target all
-          dir
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: cmake_project_win_gcc
+          path: |
+            cmake\build\one.exe
+            cmake\build\two.exe
+            cmake\build\three.exe
