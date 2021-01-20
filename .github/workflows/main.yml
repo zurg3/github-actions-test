@@ -280,7 +280,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build-linux, build-win, python-linux, python-win, java-linux, java-win]
     env:
-      vim_version: "8.2.2340"
+      vim_version: "8.2.2360"
     steps:
       - name: Get source code
         run: wget https://github.com/vim/vim/archive/v${{ env.vim_version }}.tar.gz
@@ -420,7 +420,8 @@ jobs:
           cd cmake
           mkdir build
           cd build
-          cmake ..
+          # cmake ..
+          cmake .. -DCMAKE_GENERATOR_PLATFORM=x86
           cmake --build . --config Release --target ALL_BUILD
 
       - name: Upload artifact
