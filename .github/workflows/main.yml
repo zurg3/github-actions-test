@@ -348,7 +348,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build-linux, build-win, python-linux, python-win, java-linux, java-win, cmake-project-linux, cmake-project-win-msvc-x86, cmake-project-win-msvc-x64, cmake-project-win-gcc]
     env:
-      vim_version: "8.2.2440"
+      vim_version: "8.2.2480"
     steps:
       - name: Get source code
         run: wget https://github.com/vim/vim/archive/v${{ env.vim_version }}.tar.gz
@@ -369,7 +369,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build-linux, build-win, python-linux, python-win, java-linux, java-win, cmake-project-linux, cmake-project-win-msvc-x86, cmake-project-win-msvc-x64, cmake-project-win-gcc]
     env:
-      git_version: "2.30.0"
+      git_version: "2.30.1"
     steps:
       - name: Get source code
         run: wget https://github.com/git/git/archive/v${{ env.git_version }}.tar.gz
