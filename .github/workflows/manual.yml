@@ -4,7 +4,7 @@ on: workflow_dispatch
 
 jobs:
   oblige:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     steps:
       - name: Get source code
         run: wget http://sourceforge.net/projects/oblige/files/Oblige/7.70/oblige-770-source.zip
