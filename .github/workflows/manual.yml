@@ -4,7 +4,7 @@ on: workflow_dispatch
 
 jobs:
   oblige:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-18.04
     steps:
       - name: Get source code
         run: wget https://sourceforge.net/projects/oblige/files/Oblige/7.70/oblige-770-source.zip
@@ -17,8 +17,8 @@ jobs:
           cd Oblige-7.70-source
           sudo apt update
           sudo apt install libfltk1.3-dev zlib1g-dev
-          wget https://aur.archlinux.org/cgit/aur.git/plain/0001-Fix-compilation.patch?h=oblige -O 0001-Fix-compilation.patch
-          patch -i 0001-Fix-compilation.patch -p 1 --binary
+          # wget https://aur.archlinux.org/cgit/aur.git/plain/0001-Fix-compilation.patch?h=oblige -O 0001-Fix-compilation.patch
+          # patch -i 0001-Fix-compilation.patch -p 1 --binary
           make
       - name: Generate WAD
         run: |
