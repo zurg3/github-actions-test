@@ -17,6 +17,8 @@ jobs:
           cd Oblige-7.70-source
           sudo apt update
           sudo apt install libfltk1.3-dev zlib1g-dev
+          wget https://aur.archlinux.org/cgit/aur.git/plain/0001-Fix-compilation.patch?h=oblige
+          patch -i 0001-Fix-compilation.patch -p 1 --binary
           make
       - name: Generate WAD
         run: |
