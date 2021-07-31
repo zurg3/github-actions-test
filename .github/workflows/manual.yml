@@ -18,8 +18,7 @@ jobs:
           sudo apt update
           sudo apt install libfltk1.3-dev zlib1g-dev
           wget https://aur.archlinux.org/cgit/aur.git/plain/0001-Fix-compilation.patch?h=oblige -O 0001-Fix-compilation.patch
-          # patch -i 0001-Fix-compilation.patch -p 1 --binary
-          patch -i 0001-Fix-compilation.patch --binary
+          patch -i 0001-Fix-compilation.patch -p 2 --binary
           make
       - name: Generate WAD
         run: |
