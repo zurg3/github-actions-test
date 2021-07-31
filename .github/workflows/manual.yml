@@ -4,10 +4,10 @@ on: workflow_dispatch
 
 jobs:
   oblige:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps:
       - name: Get source code
-        run: wget http://sourceforge.net/projects/oblige/files/Oblige/7.70/oblige-770-source.zip
+        run: wget https://sourceforge.net/projects/oblige/files/Oblige/7.70/oblige-770-source.zip
 
       - name: Extract source code
         run: unzip oblige-770-source.zip
