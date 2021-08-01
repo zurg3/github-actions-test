@@ -7,8 +7,6 @@ env:
 
 on:
   push:
-    paths-ignore:
-      - ".github/workflows/manual.yml"
     branches:
       - master
 
