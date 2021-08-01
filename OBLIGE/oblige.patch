@@ -1,0 +1,105 @@
+diff -Naur a/gui/csg_clip.cc b/gui/csg_clip.cc
+--- a/gui/csg_clip.cc	2017-08-06 06:12:11.000000000 +0300
++++ b/gui/csg_clip.cc	2021-08-01 17:23:51.594858721 +0300
+@@ -1019,7 +1019,7 @@
+ 		else
+ 			node->back = PartitionGroup(back);
+ 
+-		// input group has been consumed now 
++		// input group has been consumed now
+ 
+ 		return node;
+ 	}
+@@ -1054,7 +1054,9 @@
+ {
+ 	if (flip)
+ 	{
+-		std::swap(raw_clip.children[0], raw_clip.children[1]);
++		auto tmp = raw_clip.children[0];
++		raw_clip.children[0] = raw_clip.children[1];
++		raw_clip.children[1] = tmp;
+ 	}
+ 
+ 	// fix endianness
+diff -Naur a/gui/g_quake2.cc b/gui/g_quake2.cc
+--- a/gui/g_quake2.cc	2017-08-06 06:12:11.000000000 +0300
++++ b/gui/g_quake2.cc	2021-08-01 17:23:56.528203139 +0300
+@@ -650,7 +650,9 @@
+ 
+ 	if (flipped)
+ 	{
+-		std::swap(raw_node.children[0], raw_node.children[1]);
++		auto tmp = raw_node.children[0];
++		raw_node.children[0] = raw_node.children[1];
++		raw_node.children[1] = tmp;
+ 	}
+ 
+ 
+@@ -711,7 +713,7 @@
+ 
+ 	Q2_WriteSolidLeaf();
+ 
+-	Q2_WriteNode(qk_bsp_root);  
++	Q2_WriteNode(qk_bsp_root);
+ 
+ 
+ 	if (q2_total_faces >= MAX_MAP_FACES)
+@@ -881,7 +883,9 @@
+ 
+ 		if (flipped)
+ 		{
+-			std::swap(raw_node.children[0], raw_node.children[1]);
++			auto tmp = raw_node.children[0];
++			raw_node.children[0] = raw_node.children[1];
++			raw_node.children[1] = tmp;
+ 		}
+ 
+ 		raw_node.firstface = face_base + face;
+diff -Naur a/gui/g_quake3.cc b/gui/g_quake3.cc
+--- a/gui/g_quake3.cc	2017-08-06 06:12:11.000000000 +0300
++++ b/gui/g_quake3.cc	2021-08-01 17:23:58.221540278 +0300
+@@ -965,7 +965,9 @@
+ 
+ 	if (flipped)
+ 	{
+-		std::swap(raw_node.children[0], raw_node.children[1]);
++		auto tmp = raw_node.children[0];
++		raw_node.children[0] = raw_node.children[1];
++		raw_node.children[1] = tmp;
+ 	}
+ 
+ 
+diff -Naur a/gui/g_quake.cc b/gui/g_quake.cc
+--- a/gui/g_quake.cc	2017-08-06 06:12:11.000000000 +0300
++++ b/gui/g_quake.cc	2021-08-01 17:23:54.264864721 +0300
+@@ -865,7 +865,9 @@
+ 
+ 	if (flipped)
+ 	{
+-		std::swap(raw_node.children[0], raw_node.children[1]);
++		auto tmp = raw_node.children[0];
++		raw_node.children[0] = raw_node.children[1];
++		raw_node.children[1] = tmp;
+ 	}
+ 
+ 
+@@ -924,7 +926,7 @@
+ 
+ 	Q1_WriteSolidLeaf();
+ 
+-	Q1_WriteNode(qk_bsp_root);  
++	Q1_WriteNode(qk_bsp_root);
+ 
+ 
+ 	if (q1_total_faces >= MAX_MAP_FACES)
+@@ -1199,7 +1201,9 @@
+ 
+ 		if (flipped)
+ 		{
+-			std::swap(raw_node.children[0], raw_node.children[1]);
++			auto tmp = raw_node.children[0];
++			raw_node.children[0] = raw_node.children[1];
++			raw_node.children[1] = tmp;
+ 		}
+ 
+ 		raw_node.firstface = face_base + face;
