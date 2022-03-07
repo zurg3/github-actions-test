@@ -33,7 +33,7 @@ jobs:
         run: ls -la
 
       - name: Git Clone
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: List current dir
         run: ls -la
@@ -64,7 +64,7 @@ jobs:
     needs: deploy
     steps:
       - name: Git Clone
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Compile hello.cpp
         run: |
@@ -72,7 +72,7 @@ jobs:
           ./hello_cpp
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: hello_cpp_linux
           path: hello_cpp
@@ -82,7 +82,7 @@ jobs:
     needs: deploy
     steps:
       - name: Git Clone
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Compile hello.cpp
         run: |
@@ -90,7 +90,7 @@ jobs:
           .\hello_cpp.exe
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: hello_cpp_win
           path: hello_cpp.exe
@@ -100,12 +100,12 @@ jobs:
     needs: deploy
     steps:
       - name: Git Clone
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
-      - name: Set up Python 3.8
-        uses: actions/setup-python@v2
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v3
         with:
-          python-version: "3.8"
+          python-version: "3.10"
 
       - name: Install Python packages
         run: |
@@ -118,7 +118,7 @@ jobs:
         run: pyinstaller --onefile hello.py
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: hello_py_linux
           path: dist/hello
@@ -127,7 +127,7 @@ jobs:
         run: pyinstaller --onefile calc.py
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: calc_py_linux
           path: dist/calc
@@ -137,12 +137,12 @@ jobs:
     needs: deploy
     steps:
       - name: Git Clone
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
-      - name: Set up Python 3.8
-        uses: actions/setup-python@v2
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v3
         with:
-          python-version: "3.8"
+          python-version: "3.10"
 
       - name: Install Python packages
         run: |
@@ -155,7 +155,7 @@ jobs:
         run: pyinstaller --onefile hello.py
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: hello_py_win
           path: dist\hello.exe
@@ -164,7 +164,7 @@ jobs:
         run: pyinstaller --onefile calc.py
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: calc_py_win
           path: dist\calc.exe
@@ -174,13 +174,13 @@ jobs:
     needs: deploy
     steps:
       - name: Git Clone
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Java SDK
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@v3
         with:
           distribution: "zulu"
-          java-version: "14"
+          java-version: "16"
           architecture: "x64"
 
       - name: Compile
@@ -190,7 +190,7 @@ jobs:
         run: java MultiplicationTable
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: MultiplicationTable_java_linux
           path: MultiplicationTable.class
@@ -200,10 +200,10 @@ jobs:
     needs: deploy
     steps:
       - name: Git Clone
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Java SDK
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@v3
         with:
           distribution: "zulu"
           java-version: "8"
@@ -216,7 +216,7 @@ jobs:
         run: java MultiplicationTable
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: MultiplicationTable_java_win
           path: MultiplicationTable.class
@@ -226,7 +226,7 @@ jobs:
     needs: deploy
     steps:
       - name: Git Clone
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Build
         run: |
@@ -243,7 +243,7 @@ jobs:
           cmake/build/./three
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: cmake_project_linux
           path: |
@@ -256,7 +256,7 @@ jobs:
     needs: deploy
     steps:
       - name: Git Clone
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v1
@@ -270,7 +270,7 @@ jobs:
           cmake --build . --config Release --target ALL_BUILD
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: cmake_project_win_msvc_x86
           path: cmake\build\Release
@@ -280,7 +280,7 @@ jobs:
     needs: deploy
     steps:
       - name: Git Clone
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v1
@@ -294,7 +294,7 @@ jobs:
           cmake --build . --config Release --target ALL_BUILD
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: cmake_project_win_msvc_x64
           path: cmake\build\Release
@@ -304,7 +304,7 @@ jobs:
     needs: deploy
     steps:
       - name: Git Clone
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Build
         run: |
@@ -315,7 +315,7 @@ jobs:
           cmake --build . --target all
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: cmake_project_win_gcc
           path: |
@@ -350,7 +350,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build-linux, build-win, python-linux, python-win, java-linux, java-win, cmake-project-linux, cmake-project-win-msvc-x86, cmake-project-win-msvc-x64, cmake-project-win-gcc]
     env:
-      vim_version: "8.2.4480"
+      vim_version: "8.2.4520"
     steps:
       - name: Get source code
         run: wget https://github.com/vim/vim/archive/v${{ env.vim_version }}.tar.gz
@@ -396,9 +396,9 @@ jobs:
     needs: [nano, vim, git]
     steps:
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
-          node-version: "14"
+          node-version: "16"
 
       - name: Prepare
         run: |
@@ -413,7 +413,7 @@ jobs:
           electron-packager . ElectronQuickStart --platform=linux --arch=x64
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: ElectronQuickStart-linux-x64
           path: electron-quick-start/ElectronQuickStart-linux-x64
@@ -423,9 +423,9 @@ jobs:
     needs: [nano, vim, git]
     steps:
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
-          node-version: "14"
+          node-version: "16"
 
       - name: Prepare
         run: |
@@ -440,7 +440,7 @@ jobs:
           electron-packager . ElectronQuickStart --platform=win32 --arch=x64
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: ElectronQuickStart-win32-x64
           path: electron-quick-start\ElectronQuickStart-win32-x64
