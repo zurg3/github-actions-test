@@ -350,7 +350,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build-linux, build-win, python-linux, python-win, java-linux, java-win, cmake-project-linux, cmake-project-win-msvc-x86, cmake-project-win-msvc-x64, cmake-project-win-gcc]
     env:
-      vim_version: "9.0.1900"
+      vim_version: "9.0.2000"
     steps:
       - name: Get source code
         run: wget https://github.com/vim/vim/archive/v${{ env.vim_version }}.tar.gz
