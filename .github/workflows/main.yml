@@ -472,4 +472,4 @@ jobs:
           bundle update
           bundle exec jekyll build
           ls -la
-          ls -la _site
+          ls -la _site/*.html
