@@ -465,4 +465,11 @@ jobs:
         run: |
           cd jekyll-blog
           bundle exec jekyll build
+
+      - name: Update gems & Build
+        run: |
+          cd jekyll-blog
+          bundle update
+          bundle exec jekyll build
           ls -la
+          ls -la _site
