@@ -3,7 +3,14 @@
 name: GitHub-Actions-Test
 env:
   APP_NAME: "GitHub Actions Test"
-  PACKAGE_NAME: "github-actions-test-ver-${{ github.sha }}"
+  PACKAGE_NAME: "github-actions-test-${{ github.sha }}"
+  PYTHON_VERSION: "3.10"
+  JAVA_VERSION: "20"
+  NODE_VERSION: "20"
+  RUBY_VERSION: "3.0"
+  NANO_VERSION: "8.0"
+  VIM_VERSION: "9.1.0390"
+  GIT_VERSION: "2.45.0"
 
 on:
   push:
@@ -102,10 +109,10 @@ jobs:
       - name: Git Clone
         uses: actions/checkout@v4
 
-      - name: Set up Python 3.10
+      - name: Set up Python ${{ env.PYTHON_VERSION }}
         uses: actions/setup-python@v5
         with:
-          python-version: "3.10"
+          python-version: ${{ env.PYTHON_VERSION }}
 
       - name: Install Python packages
         run: |
@@ -139,10 +146,10 @@ jobs:
       - name: Git Clone
         uses: actions/checkout@v4
 
-      - name: Set up Python 3.10
+      - name: Set up Python ${{ env.PYTHON_VERSION }}
         uses: actions/setup-python@v5
         with:
-          python-version: "3.10"
+          python-version: ${{ env.PYTHON_VERSION }}
 
       - name: Install Python packages
         run: |
@@ -180,7 +187,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: "zulu"
-          java-version: "20"
+          java-version: ${{ env.JAVA_VERSION }}
           architecture: "x64"
 
       - name: Compile
@@ -222,7 +229,7 @@ jobs:
           path: MultiplicationTable.class
 
   cmake-project-linux:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     needs: deploy
     steps:
       - name: Git Clone
@@ -326,18 +333,16 @@ jobs:
   nano:
     runs-on: ubuntu-latest
     needs: [build-linux, build-win, python-linux, python-win, java-linux, java-win, cmake-project-linux, cmake-project-win-msvc-x86, cmake-project-win-msvc-x64, cmake-project-win-gcc]
-    env:
-      nano_version: "8.0"
     steps:
       - name: Get source code
-        run: wget https://ftp.gnu.org/gnu/nano/nano-${{ env.nano_version }}.tar.gz
+        run: wget https://ftp.gnu.org/gnu/nano/nano-${{ env.NANO_VERSION }}.tar.gz
 
       - name: Extract source code
-        run: tar xzf nano-${{ env.nano_version }}.tar.gz
+        run: tar xzf nano-${{ env.NANO_VERSION }}.tar.gz
 
       - name: Configure, Build & Install
         run: |
-          cd nano-${{ env.nano_version }}
+          cd nano-${{ env.NANO_VERSION }}
           sudo apt update
           sudo apt install libncursesw5-dev
           ./configure
@@ -349,18 +354,16 @@ jobs:
   vim:
     runs-on: ubuntu-latest
     needs: [build-linux, build-win, python-linux, python-win, java-linux, java-win, cmake-project-linux, cmake-project-win-msvc-x86, cmake-project-win-msvc-x64, cmake-project-win-gcc]
-    env:
-      vim_version: "9.1.0390"
     steps:
       - name: Get source code
-        run: wget https://github.com/vim/vim/archive/v${{ env.vim_version }}.tar.gz
+        run: wget https://github.com/vim/vim/archive/v${{ env.VIM_VERSION }}.tar.gz
 
       - name: Extract source code
-        run: tar xzf v${{ env.vim_version }}.tar.gz
+        run: tar xzf v${{ env.VIM_VERSION }}.tar.gz
 
       - name: Configure, Build & Install
         run: |
-          cd vim-${{ env.vim_version }}
+          cd vim-${{ env.VIM_VERSION }}
           ./configure
           make
           ls -la
@@ -370,18 +373,16 @@ jobs:
   git:
     runs-on: ubuntu-latest
     needs: [build-linux, build-win, python-linux, python-win, java-linux, java-win, cmake-project-linux, cmake-project-win-msvc-x86, cmake-project-win-msvc-x64, cmake-project-win-gcc]
-    env:
-      git_version: "2.45.0"
     steps:
       - name: Get source code
-        run: wget https://github.com/git/git/archive/v${{ env.git_version }}.tar.gz
+        run: wget https://github.com/git/git/archive/v${{ env.GIT_VERSION }}.tar.gz
 
       - name: Extract source code
-        run: tar xzf v${{ env.git_version }}.tar.gz
+        run: tar xzf v${{ env.GIT_VERSION }}.tar.gz
 
       - name: Configure, Build & Install
         run: |
-          cd git-${{ env.git_version }}
+          cd git-${{ env.GIT_VERSION }}
           sudo apt update
           sudo apt install gettext
           autoconf
@@ -398,7 +399,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: ${{ env.NODE_VERSION }}
 
       - name: Prepare
         run: |
@@ -425,7 +426,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: ${{ env.NODE_VERSION }}
 
       - name: Prepare
         run: |
@@ -452,7 +453,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "3.0"
+          ruby-version: ${{ env.RUBY_VERSION }}
 
       - name: Prepare
         run: |
