@@ -406,12 +406,12 @@ jobs:
           git clone https://github.com/electron/electron-quick-start.git
           cd electron-quick-start
           npm install
-          sudo npm install -g electron-packager
+          npm install --save-dev @electron/packager
 
       - name: Build
         run: |
           cd electron-quick-start
-          electron-packager . ElectronQuickStart --platform=linux --arch=x64
+          npx @electron/packager . ElectronQuickStart --platform=linux --arch=x64
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
@@ -433,12 +433,12 @@ jobs:
           git clone https://github.com/electron/electron-quick-start.git
           cd electron-quick-start
           npm install
-          npm install -g electron-packager
+          npm install --save-dev @electron/packager
 
       - name: Build
         run: |
           cd electron-quick-start
-          electron-packager . ElectronQuickStart --platform=win32 --arch=x64
+          npx @electron/packager . ElectronQuickStart --platform=win32 --arch=x64
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
