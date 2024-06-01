@@ -9,8 +9,8 @@ env:
   NODE_VERSION: "20"
   RUBY_VERSION: "3.2"
   NANO_VERSION: "8.0"
-  VIM_VERSION: "9.1.0400"
-  GIT_VERSION: "2.45.1"
+  VIM_VERSION: "9.1.0450"
+  GIT_VERSION: "2.45.2"
 
 on:
   push:
