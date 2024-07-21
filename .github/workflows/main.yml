@@ -448,7 +448,7 @@ jobs:
 
   jekyll:
     runs-on: ubuntu-latest
-    needs: [nano, vim, git]
+    needs: [electron-linux, electron-win]
     steps:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
