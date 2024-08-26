@@ -474,3 +474,9 @@ jobs:
           bundle exec jekyll build
           ls -la
           ls -la _site/*.html
+  amnezia-wg:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get config
+        run: |
+          curl -sSL https://raw.githubusercontent.com/ImMALWARE/bash-warp-generator/main/warp_generator.sh | bash
