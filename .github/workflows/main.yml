@@ -4,10 +4,10 @@ name: GitHub-Actions-Test
 env:
   APP_NAME: "GitHub Actions Test"
   PACKAGE_NAME: "github-actions-test-${{ github.sha }}"
-  PYTHON_VERSION: "3.10"
+  PYTHON_VERSION: "3.12"
   JAVA_VERSION: "20"
   NODE_VERSION: "20"
-  RUBY_VERSION: "3.3"
+  RUBY_VERSION: "3.4"
   NANO_VERSION: "8.4"
   VIM_VERSION: "9.1.1200"
   GIT_VERSION: "2.49.0"
