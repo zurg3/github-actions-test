@@ -8,9 +8,9 @@ env:
   JAVA_VERSION: "20"
   NODE_VERSION: "20"
   RUBY_VERSION: "3.4"
-  NANO_VERSION: "8.4"
+  NANO_VERSION: "8.5"
   VIM_VERSION: "9.1.1400"
-  GIT_VERSION: "2.49.0"
+  GIT_VERSION: "2.50.0"
 
 on:
   push:
