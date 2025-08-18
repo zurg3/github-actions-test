@@ -40,7 +40,7 @@ jobs:
         run: ls -la
 
       - name: Git Clone
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: List current dir
         run: ls -la
@@ -71,7 +71,7 @@ jobs:
     needs: deploy
     steps:
       - name: Git Clone
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Compile hello.cpp
         run: |
@@ -89,7 +89,7 @@ jobs:
     needs: deploy
     steps:
       - name: Git Clone
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Compile hello.cpp
         run: |
@@ -107,7 +107,7 @@ jobs:
     needs: deploy
     steps:
       - name: Git Clone
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Python ${{ env.PYTHON_VERSION }}
         uses: actions/setup-python@v5
@@ -144,7 +144,7 @@ jobs:
     needs: deploy
     steps:
       - name: Git Clone
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Python ${{ env.PYTHON_VERSION }}
         uses: actions/setup-python@v5
@@ -181,7 +181,7 @@ jobs:
     needs: deploy
     steps:
       - name: Git Clone
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Java SDK
         uses: actions/setup-java@v4
@@ -207,7 +207,7 @@ jobs:
     needs: deploy
     steps:
       - name: Git Clone
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Java SDK
         uses: actions/setup-java@v4
@@ -233,7 +233,7 @@ jobs:
     needs: deploy
     steps:
       - name: Git Clone
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Build
         run: |
@@ -263,7 +263,7 @@ jobs:
     needs: deploy
     steps:
       - name: Git Clone
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v2
@@ -287,7 +287,7 @@ jobs:
     needs: deploy
     steps:
       - name: Git Clone
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v2
@@ -311,7 +311,7 @@ jobs:
     needs: deploy
     steps:
       - name: Git Clone
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Build
         run: |
