@@ -10,7 +10,7 @@ env:
   RUBY_VERSION: "3.4"
   NANO_VERSION: "8.5"
   VIM_VERSION: "9.1.1600"
-  GIT_VERSION: "2.50.1"
+  GIT_VERSION: "2.51.0"
 
 on:
   push:
@@ -403,21 +403,21 @@ jobs:
 
       - name: Prepare
         run: |
-          git clone https://github.com/electron/electron-quick-start.git
-          cd electron-quick-start
+          git clone https://github.com/electron/minimal-repro.git
+          cd minimal-repro
           npm install
           npm install --save-dev @electron/packager
 
       - name: Build
         run: |
-          cd electron-quick-start
-          npx @electron/packager . ElectronQuickStart --platform=linux --arch=x64
+          cd minimal-repro
+          npx @electron/packager . ElectronMinimalRepro --platform=linux --arch=x64
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ElectronQuickStart-linux-x64
-          path: electron-quick-start/ElectronQuickStart-linux-x64
+          name: ElectronMinimalRepro-linux-x64
+          path: minimal-repro/ElectronMinimalRepro-linux-x64
 
   electron-win:
     runs-on: windows-latest
@@ -430,21 +430,21 @@ jobs:
 
       - name: Prepare
         run: |
-          git clone https://github.com/electron/electron-quick-start.git
-          cd electron-quick-start
+          git clone https://github.com/electron/minimal-repro.git
+          cd minimal-repro
           npm install
           npm install --save-dev @electron/packager
 
       - name: Build
         run: |
-          cd electron-quick-start
-          npx @electron/packager . ElectronQuickStart --platform=win32 --arch=x64
+          cd minimal-repro
+          npx @electron/packager . ElectronMinimalRepro --platform=win32 --arch=x64
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ElectronQuickStart-win32-x64
-          path: electron-quick-start\ElectronQuickStart-win32-x64
+          name: ElectronMinimalRepro-win32-x64
+          path: minimal-repro\ElectronMinimalRepro-win32-x64
 
   jekyll:
     runs-on: ubuntu-latest
