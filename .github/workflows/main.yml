@@ -338,7 +338,7 @@ jobs:
         run: wget https://ftp.gnu.org/gnu/nano/nano-${{ env.NANO_VERSION }}.tar.gz
 
       - name: Extract source code
-        run: tar xzf nano-${{ env.NANO_VERSION }}.tar.gz
+        run: tar -xzf nano-${{ env.NANO_VERSION }}.tar.gz
 
       - name: Configure, Build & Install
         run: |
@@ -359,7 +359,7 @@ jobs:
         run: wget https://github.com/vim/vim/archive/v${{ env.VIM_VERSION }}.tar.gz
 
       - name: Extract source code
-        run: tar xzf v${{ env.VIM_VERSION }}.tar.gz
+        run: tar -xzf v${{ env.VIM_VERSION }}.tar.gz
 
       - name: Configure, Build & Install
         run: |
@@ -378,7 +378,7 @@ jobs:
         run: wget https://github.com/git/git/archive/v${{ env.GIT_VERSION }}.tar.gz
 
       - name: Extract source code
-        run: tar xzf v${{ env.GIT_VERSION }}.tar.gz
+        run: tar -xzf v${{ env.GIT_VERSION }}.tar.gz
 
       - name: Configure, Build & Install
         run: |
