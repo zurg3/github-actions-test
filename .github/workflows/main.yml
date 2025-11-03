@@ -79,7 +79,7 @@ jobs:
           ./hello_cpp
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: hello_cpp_linux
           path: hello_cpp
@@ -97,7 +97,7 @@ jobs:
           .\hello_cpp.exe
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: hello_cpp_win
           path: hello_cpp.exe
@@ -125,7 +125,7 @@ jobs:
         run: pyinstaller --onefile hello.py
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: hello_py_linux
           path: dist/hello
@@ -134,7 +134,7 @@ jobs:
         run: pyinstaller --onefile calc.py
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: calc_py_linux
           path: dist/calc
@@ -162,7 +162,7 @@ jobs:
         run: pyinstaller --onefile hello.py
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: hello_py_win
           path: dist\hello.exe
@@ -171,7 +171,7 @@ jobs:
         run: pyinstaller --onefile calc.py
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: calc_py_win
           path: dist\calc.exe
@@ -197,7 +197,7 @@ jobs:
         run: java MultiplicationTable
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: MultiplicationTable_java_linux
           path: MultiplicationTable.class
@@ -223,7 +223,7 @@ jobs:
         run: java MultiplicationTable
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: MultiplicationTable_java_win
           path: MultiplicationTable.class
@@ -250,7 +250,7 @@ jobs:
           cmake/build/./three
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: cmake_project_linux
           path: |
@@ -277,7 +277,7 @@ jobs:
           cmake --build . --config Release --target ALL_BUILD
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: cmake_project_win_msvc_x86
           path: cmake\build\Release
@@ -301,7 +301,7 @@ jobs:
           cmake --build . --config Release --target ALL_BUILD
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: cmake_project_win_msvc_x64
           path: cmake\build\Release
@@ -322,7 +322,7 @@ jobs:
           cmake --build . --target all
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: cmake_project_win_gcc
           path: |
@@ -414,7 +414,7 @@ jobs:
           npx @electron/packager . ElectronMinimalRepro --platform=linux --arch=x64
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: ElectronMinimalRepro-linux-x64
           path: minimal-repro/ElectronMinimalRepro-linux-x64
@@ -441,7 +441,7 @@ jobs:
           npx @electron/packager . ElectronMinimalRepro --platform=win32 --arch=x64
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: ElectronMinimalRepro-win32-x64
           path: minimal-repro\ElectronMinimalRepro-win32-x64
