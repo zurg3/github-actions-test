@@ -397,7 +397,7 @@ jobs:
     needs: [nano, vim, git]
     steps:
       - name: Set up Node.js
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v6
         with:
           node-version: ${{ env.NODE_VERSION }}
 
@@ -424,7 +424,7 @@ jobs:
     needs: [nano, vim, git]
     steps:
       - name: Set up Node.js
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v6
         with:
           node-version: ${{ env.NODE_VERSION }}
 
