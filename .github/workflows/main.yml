@@ -10,7 +10,7 @@ env:
   RUBY_VERSION: "3.4"
   NANO_VERSION: "8.7"
   VIM_VERSION: "9.1.1900"
-  GIT_VERSION: "2.51.2"
+  GIT_VERSION: "2.52.0"
 
 on:
   push:
