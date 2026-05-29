@@ -474,3 +474,19 @@ jobs:
           bundle exec jekyll build
           ls -la
           ls -la _site/*.html
+
+  ytify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Build
+        run: |
+          git clone https://github.com/n-ce/ytify.git
+          cd ytify
+          npm install
+          npm run build
+          ls -l
