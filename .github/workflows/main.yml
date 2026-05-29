@@ -490,3 +490,4 @@ jobs:
           npm install
           npm run build
           ls -l
+          ls -l dist
