@@ -8,9 +8,6 @@ env:
   JAVA_VERSION: "25"
   NODE_VERSION: "24"
   RUBY_VERSION: "3.4"
-  NANO_VERSION: "9.0"
-  VIM_VERSION: "9.2.0500"
-  GIT_VERSION: "2.54.0"
 
 on:
   push:
@@ -330,71 +327,9 @@ jobs:
             cmake\build\two.exe
             cmake\build\three.exe
 
-  nano:
-    runs-on: ubuntu-latest
-    needs: [build-linux, build-win, python-linux, python-win, java-linux, java-win, cmake-project-linux, cmake-project-win-msvc-x86, cmake-project-win-msvc-x64, cmake-project-win-gcc]
-    steps:
-      - name: Get source code
-        run: wget https://ftp.gnu.org/gnu/nano/nano-${{ env.NANO_VERSION }}.tar.gz
-
-      - name: Extract source code
-        run: tar -xzf nano-${{ env.NANO_VERSION }}.tar.gz
-
-      - name: Configure, Build & Install
-        run: |
-          cd nano-${{ env.NANO_VERSION }}
-          sudo apt update
-          sudo apt install libncursesw5-dev
-          ./configure
-          make
-          ls -la
-          sudo make install
-          nano --version
-
-  vim:
-    runs-on: ubuntu-latest
-    needs: [build-linux, build-win, python-linux, python-win, java-linux, java-win, cmake-project-linux, cmake-project-win-msvc-x86, cmake-project-win-msvc-x64, cmake-project-win-gcc]
-    steps:
-      - name: Get source code
-        run: wget https://github.com/vim/vim/archive/v${{ env.VIM_VERSION }}.tar.gz
-
-      - name: Extract source code
-        run: tar -xzf v${{ env.VIM_VERSION }}.tar.gz
-
-      - name: Configure, Build & Install
-        run: |
-          cd vim-${{ env.VIM_VERSION }}
-          ./configure
-          make
-          ls -la
-          sudo make install
-          vim --version
-
-  git:
-    runs-on: ubuntu-latest
-    needs: [build-linux, build-win, python-linux, python-win, java-linux, java-win, cmake-project-linux, cmake-project-win-msvc-x86, cmake-project-win-msvc-x64, cmake-project-win-gcc]
-    steps:
-      - name: Get source code
-        run: wget https://github.com/git/git/archive/v${{ env.GIT_VERSION }}.tar.gz
-
-      - name: Extract source code
-        run: tar -xzf v${{ env.GIT_VERSION }}.tar.gz
-
-      - name: Configure, Build & Install
-        run: |
-          cd git-${{ env.GIT_VERSION }}
-          sudo apt update
-          sudo apt install gettext
-          autoconf
-          ./configure
-          make
-          ls -la
-          sudo make install
-          git --version
-
   electron-linux:
     runs-on: ubuntu-latest
-    needs: [nano, vim, git]
+    needs: [build-linux, build-win, python-linux, python-win, java-linux, java-win, cmake-project-linux, cmake-project-win-msvc-x86, cmake-project-win-msvc-x64, cmake-project-win-gcc]
     steps:
       - name: Set up Node.js
         uses: actions/setup-node@v6
@@ -421,7 +356,7 @@ jobs:
 
   electron-win:
     runs-on: windows-latest
-    needs: [nano, vim, git]
+    needs: [build-linux, build-win, python-linux, python-win, java-linux, java-win, cmake-project-linux, cmake-project-win-msvc-x86, cmake-project-win-msvc-x64, cmake-project-win-gcc]
     steps:
       - name: Set up Node.js
         uses: actions/setup-node@v6
@@ -474,20 +409,3 @@ jobs:
           bundle exec jekyll build
           ls -la
           ls -la _site/*.html
-
-  ytify:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Set up Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-
-      - name: Build
-        run: |
-          git clone https://github.com/n-ce/ytify.git
-          cd ytify
-          npm install
-          npm run build
-          ls -l
-          ls -l dist
