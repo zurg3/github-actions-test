@@ -414,3 +414,23 @@ jobs:
           bundle exec jekyll build
           ls -la
           ls -la _site/*.html
+
+  awg:
+    runs-on: windows-latest
+    needs: jekyll
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          repository: amnezia-vpn/amneziawg-windows-client
+
+      - name: Build client
+        shell: cmd
+        run: build.bat
+
+      - name: Build installer
+        shell: cmd
+        run: installer/build.bat
+
+      - name: Check binaries
+        run: dir
