@@ -415,7 +415,7 @@ jobs:
           ls -la
           ls -la _site/*.html
 
-  awg:
+  amneziawg-windows-client:
     runs-on: windows-latest
     needs: jekyll
     env:
