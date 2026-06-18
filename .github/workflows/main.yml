@@ -418,11 +418,15 @@ jobs:
   awg:
     runs-on: windows-latest
     needs: jekyll
+    env:
+      AWG_VERSION: "2.0.1"
+      AWG_ARCH: "amd64"
     steps:
       - name: Checkout
         uses: actions/checkout@v6
         with:
           repository: amnezia-vpn/amneziawg-windows-client
+          ref: ${{ env.AWG_VERSION }}
 
       - name: Build client
         shell: cmd
@@ -432,9 +436,8 @@ jobs:
         shell: cmd
         run: installer/build.bat
 
-      - name: Check binaries
-        run: |
-          dir amd64
-          dir x86
-          dir arm64
-          dir installer/dist
+      - name: Upload artifact
+        uses: actions/upload-artifact@v7
+        with:
+          path: installer/dist/amneziawg-${{ env.AWG_ARCH }}-${{ env.AWG_VERSION }}.msi
+          archive: false
