@@ -331,6 +331,11 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build-linux, build-win, python-linux, python-win, java-linux, java-win, cmake-project-linux, cmake-project-win-msvc-x86, cmake-project-win-msvc-x64, cmake-project-win-gcc]
     steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          repository: electron/minimal-repro
+
       - name: Set up Node.js
         uses: actions/setup-node@v6
         with:
@@ -338,14 +343,11 @@ jobs:
 
       - name: Prepare
         run: |
-          git clone https://github.com/electron/minimal-repro.git
-          cd minimal-repro
           npm install
           npm install --save-dev @electron/packager
 
       - name: Build
         run: |
-          cd minimal-repro
           npx @electron/packager . ElectronMinimalRepro --platform=linux --arch=x64
 
       - name: Upload artifact
@@ -358,6 +360,11 @@ jobs:
     runs-on: windows-latest
     needs: [build-linux, build-win, python-linux, python-win, java-linux, java-win, cmake-project-linux, cmake-project-win-msvc-x86, cmake-project-win-msvc-x64, cmake-project-win-gcc]
     steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          repository: electron/minimal-repro
+
       - name: Set up Node.js
         uses: actions/setup-node@v6
         with:
@@ -365,14 +372,11 @@ jobs:
 
       - name: Prepare
         run: |
-          git clone https://github.com/electron/minimal-repro.git
-          cd minimal-repro
           npm install
           npm install --save-dev @electron/packager
 
       - name: Build
         run: |
-          cd minimal-repro
           npx @electron/packager . ElectronMinimalRepro --platform=win32 --arch=x64
 
       - name: Upload artifact
@@ -385,6 +389,11 @@ jobs:
     runs-on: ubuntu-latest
     needs: [electron-linux, electron-win]
     steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          repository: zurg3/jekyll-blog
+
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
@@ -392,19 +401,15 @@ jobs:
 
       - name: Prepare
         run: |
-          git clone https://github.com/zurg3/jekyll-blog.git
-          cd jekyll-blog
           gem install jekyll bundler
           bundle install
 
       - name: Build
         run: |
-          cd jekyll-blog
           bundle exec jekyll build
 
       - name: Update gems & Build
         run: |
-          cd jekyll-blog
           bundle update
           bundle exec jekyll build
           ls -la
