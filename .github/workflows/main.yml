@@ -433,4 +433,8 @@ jobs:
         run: installer/build.bat
 
       - name: Check binaries
-        run: dir
+        run: |
+          dir amd64
+          dir x86
+          dir arm64
+          dir installer/dist
