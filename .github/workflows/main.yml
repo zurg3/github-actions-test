@@ -354,7 +354,7 @@ jobs:
         uses: actions/upload-artifact@v7
         with:
           name: ElectronMinimalRepro-linux-x64
-          path: minimal-repro/ElectronMinimalRepro-linux-x64
+          path: ElectronMinimalRepro-linux-x64
 
   electron-win:
     runs-on: windows-latest
@@ -383,7 +383,7 @@ jobs:
         uses: actions/upload-artifact@v7
         with:
           name: ElectronMinimalRepro-win32-x64
-          path: minimal-repro\ElectronMinimalRepro-win32-x64
+          path: ElectronMinimalRepro-win32-x64
 
   jekyll:
     runs-on: ubuntu-latest
