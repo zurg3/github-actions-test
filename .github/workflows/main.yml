@@ -341,7 +341,7 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
 
-      - name: Prepare
+      - name: Install
         run: |
           npm install
           npm install --save-dev @electron/packager
@@ -370,7 +370,7 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
 
-      - name: Prepare
+      - name: Install
         run: |
           npm install
           npm install --save-dev @electron/packager
