@@ -431,4 +431,5 @@ jobs:
           unzip -q release.zip -d vk_apk
           # sudo apt update
           # sudo apt install libxml2-utils
-          less vk_apk/AndroidManifest.xml
+          # cat vk_apk/AndroidManifest.xml
+          cat vk_apk/META-INF/com/android/build/gradle/app-metadata.properties
