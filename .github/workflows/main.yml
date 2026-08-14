@@ -422,7 +422,7 @@ jobs:
         run: |
           wget -q https://android-ac.vk-apps.ru/latest/release.apk
           wget -q https://download.wireguard.com/android-client/com.wireguard.android-1.0.20260315.apk -O wireguard.apk
-          curl -L https://telegram.org/dl/android/apk
+          curl -L https://telegram.org/dl/android/apk -o telegram.apk
           ls -lh
           du -h release.apk
           md5sum release.apk
@@ -437,3 +437,4 @@ jobs:
           # cat vk_apk/AndroidManifest.xml
           aapt dump badging release.apk
           aapt dump badging wireguard.apk
+          aapt dump badging telegram.apk
