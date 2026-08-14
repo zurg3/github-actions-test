@@ -414,3 +414,17 @@ jobs:
           bundle exec jekyll build
           ls -la
           ls -la _site/*.html
+
+  vk-android-apk:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get APK file
+        run: |
+          wget https://android-ac.vk-apps.ru/latest/release.apk
+          ls -lh
+      
+      - name: Extract APK file
+        run: |
+          mv release.apk release.zip
+          unzip release.zip
+          ls -lh
