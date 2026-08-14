@@ -431,4 +431,4 @@ jobs:
           unzip -q release.zip -d vk_apk
           sudo apt update
           sudo apt install xmlstarlet
-          xmlstarlet vk_apk/AndroidManifest.xml
+          xmlstarlet fo vk_apk/AndroidManifest.xml
