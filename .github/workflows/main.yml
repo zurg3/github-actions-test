@@ -428,6 +428,8 @@ jobs:
       - name: Extract APK file
         run: |
           sudo apt update
-          sudo apt install apktool
-          apktool d --no-src release.apk -o vk_apk
-          cat vk_apk/AndroidManifest.xml
+          sudo apt install aapt
+          # sudo apt install apktool
+          # apktool d --no-src release.apk -o vk_apk
+          # cat vk_apk/AndroidManifest.xml
+          aapt dump badging release.apk
