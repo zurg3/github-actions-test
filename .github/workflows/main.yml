@@ -420,11 +420,13 @@ jobs:
     steps:
       - name: Get APK file
         run: |
-          wget https://android-ac.vk-apps.ru/latest/release.apk
-          ls -lh
+          wget -q https://android-ac.vk-apps.ru/latest/release.apk
+          du -h release.apk
+          md5sum release.apk
+          sha1sum release.apk
       
       - name: Extract APK file
         run: |
           mv release.apk release.zip
-          unzip release.zip
-          ls -lh
+          unzip -q release.zip -d vk_apk
+          cat vk_apk/AndroidManifest.xml
