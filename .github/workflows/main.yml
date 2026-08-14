@@ -429,7 +429,6 @@ jobs:
         run: |
           mv release.apk release.zip
           unzip -q release.zip -d vk_apk
-          # sudo apt update
-          # sudo apt install libxml2-utils
-          # cat vk_apk/AndroidManifest.xml
-          cat vk_apk/META-INF/com/android/build/gradle/app-metadata.properties
+          sudo apt update
+          sudo apt install xmlstarlet
+          xmlstarlet vk_apk/AndroidManifest.xml
