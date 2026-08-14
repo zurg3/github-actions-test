@@ -429,4 +429,4 @@ jobs:
         run: |
           mv release.apk release.zip
           unzip -q release.zip -d vk_apk
-          cat vk_apk/AndroidManifest.xml
+          xmllint --format vk_apk/AndroidManifest.xml
