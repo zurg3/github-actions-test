@@ -429,6 +429,6 @@ jobs:
         run: |
           mv release.apk release.zip
           unzip -q release.zip -d vk_apk
-          sudo apt update
-          sudo apt install libxml2-utils
-          xmllint --format vk_apk/AndroidManifest.xml
+          # sudo apt update
+          # sudo apt install libxml2-utils
+          less vk_apk/AndroidManifest.xml
