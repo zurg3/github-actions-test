@@ -427,8 +427,7 @@ jobs:
       
       - name: Extract APK file
         run: |
-          mv release.apk release.zip
-          unzip -q release.zip -d vk_apk
           sudo apt update
-          sudo apt install xmlstarlet
-          xmlstarlet fo vk_apk/AndroidManifest.xml
+          sudo apt install apktool
+          apktool d --no-src release.apk -o vk_apk
+          cat vk_apk/AndroidManifest.xml
