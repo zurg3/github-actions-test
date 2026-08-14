@@ -422,6 +422,8 @@ jobs:
         run: |
           wget -q https://android-ac.vk-apps.ru/latest/release.apk
           wget -q https://download.wireguard.com/android-client/com.wireguard.android-1.0.20260315.apk -O wireguard.apk
+          curl -L https://telegram.org/dl/android/apk
+          ls -lh
           du -h release.apk
           md5sum release.apk
           sha1sum release.apk
