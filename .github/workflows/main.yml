@@ -415,26 +415,26 @@ jobs:
           ls -la
           ls -la _site/*.html
 
-  vk-android-apk:
+  apk-info:
     runs-on: ubuntu-latest
     steps:
-      - name: Get APK file
-        run: |
-          wget -q https://android-ac.vk-apps.ru/latest/release.apk
-          wget -q https://download.wireguard.com/android-client/com.wireguard.android-1.0.20260315.apk -O wireguard.apk
-          curl -L https://telegram.org/dl/android/apk -o telegram.apk
-          ls -lh
-          du -h release.apk
-          md5sum release.apk
-          sha1sum release.apk
-      
-      - name: Extract APK file
+      - name: Install AAPT
         run: |
           sudo apt update
           sudo apt install aapt
-          # sudo apt install apktool
-          # apktool d --no-src release.apk -o vk_apk
-          # cat vk_apk/AndroidManifest.xml
-          aapt dump badging release.apk
-          aapt dump badging wireguard.apk
+      
+      - name: Check APK - VK
+        run: |
+          wget -q https://android-ac.vk-apps.ru/latest/release.apk -O vk.apk
+          du -h vk.apk
+          md5sum vk.apk
+          sha1sum vk.apk
+          aapt dump badging vk.apk
+  
+      - name: Check APK - Telegram
+        run: |
+          curl -sL https://telegram.org/dl/android/apk -o telegram.apk
+          du -h telegram.apk
+          md5sum telegram.apk
+          sha1sum telegram.apk
           aapt dump badging telegram.apk
