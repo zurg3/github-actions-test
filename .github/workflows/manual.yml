@@ -58,3 +58,27 @@ jobs:
         with:
           path: installer/dist/amneziawg-${{ env.AWG_ARCH }}-${{ env.AWG_VERSION }}.msi
           archive: false
+
+  apk-info:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install AAPT
+        run: |
+          sudo apt update
+          sudo apt install aapt
+
+      - name: Check APK - VK
+        run: |
+          wget -q https://android-ac.vk-apps.ru/latest/release.apk -O vk.apk
+          du -h vk.apk
+          md5sum vk.apk
+          sha1sum vk.apk
+          aapt dump badging vk.apk
+
+      - name: Check APK - Telegram
+        run: |
+          wget -q https://telegram.org/dl/android/apk -O telegram.apk
+          du -h telegram.apk
+          md5sum telegram.apk
+          sha1sum telegram.apk
+          aapt dump badging telegram.apk
