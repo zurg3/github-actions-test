@@ -37,14 +37,13 @@ jobs:
     runs-on: windows-latest
     env:
       WG_VERSION: "0.5.3"
-      WG_TAG: "v${{ env.WG_VERSION }}"
       WG_ARCH: "amd64"
     steps:
       - name: Checkout
         uses: actions/checkout@v7
         with:
           repository: WireGuard/wireguard-windows
-          ref: ${{ env.WG_TAG }}
+          ref: v${{ env.WG_VERSION }}
 
       - name: Build client
         shell: cmd
