@@ -33,6 +33,33 @@ jobs:
           path: Oblige-7.70-source/OUTPUT.wad
           archive: false
 
+  wireguard-windows-client:
+    runs-on: windows-latest
+    env:
+      WG_VERSION: "0.5.3"
+      WG_TAG: "v${{ env.WG_VERSION }}"
+      WG_ARCH: "amd64"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          repository: WireGuard/wireguard-windows
+          ref: ${{ env.WG_TAG }}
+
+      - name: Build client
+        shell: cmd
+        run: build.bat
+
+      - name: Build installer
+        shell: cmd
+        run: installer/build.bat
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v7
+        with:
+          path: installer/dist/wireguard-${{ env.WG_ARCH }}-${{ env.WG_VERSION }}.msi
+          archive: false
+
   amneziawg-windows-client:
     runs-on: windows-latest
     env:
@@ -73,6 +100,7 @@ jobs:
           du -h vk.apk
           md5sum vk.apk
           sha1sum vk.apk
+          sha256sum vk.apk
           aapt dump badging vk.apk
 
       - name: Check APK - Telegram
@@ -81,4 +109,5 @@ jobs:
           du -h telegram.apk
           md5sum telegram.apk
           sha1sum telegram.apk
+          sha256sum telegram.apk
           aapt dump badging telegram.apk
