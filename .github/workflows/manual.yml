@@ -62,7 +62,7 @@ jobs:
   amneziawg-windows-client:
     runs-on: windows-latest
     env:
-      AWG_VERSION: "2.0.2"
+      AWG_VERSION: "3.1.0"
       AWG_ARCH: "amd64"
     steps:
       - name: Checkout
