@@ -36,7 +36,7 @@ jobs:
   wireguard-windows-client:
     runs-on: windows-latest
     env:
-      WG_VERSION: "0.5.3"
+      WG_VERSION: "1.1"
       WG_ARCH: "amd64"
     steps:
       - name: Checkout
