@@ -93,15 +93,6 @@ jobs:
           sudo apt update
           sudo apt install aapt
 
-      - name: Check APK - VK
-        run: |
-          wget -q https://android-ac.vk-apps.ru/latest/release.apk -O vk.apk
-          du -h vk.apk
-          md5sum vk.apk
-          sha1sum vk.apk
-          sha256sum vk.apk
-          aapt dump badging vk.apk
-
       - name: Check APK - Telegram
         run: |
           wget -q https://telegram.org/dl/android/apk -O telegram.apk
