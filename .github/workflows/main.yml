@@ -414,3 +414,23 @@ jobs:
           bundle exec jekyll build
           ls -la
           ls -la _site/*.html
+
+  ut99-renderers:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download
+        run: |
+          wget https://www.cwdohnal.com/utglr/utglr36.zip
+          wget https://www.cwdohnal.com/utglr/utd3d9r13.zip
+
+      - name: Upload OpenGL renderer
+        uses: actions/upload-artifact@v7
+        with:
+          path: utglr36.zip
+          archive: false
+
+      - name: Upload Direct3D9 renderer
+        uses: actions/upload-artifact@v7
+        with:
+          path: utd3d9r13.zip
+          archive: false
