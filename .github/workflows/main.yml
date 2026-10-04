@@ -444,8 +444,8 @@ jobs:
 
       - name: Extract
         run: |
-          unzip utglr36.zip
-          unzip utglr37.zip
-          unzip utd3d9r13.zip
-          unzip OldUnreal-UTPatch469e-Windows-x86.zip
+          unzip utglr36.zip -d utglr36
+          unzip utglr37.zip -d utglr37
+          unzip utd3d9r13.zip -d utd3d9r13
+          unzip OldUnreal-UTPatch469e-Windows-x86.zip -d patch469e
           ls -l
