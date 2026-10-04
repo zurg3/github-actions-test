@@ -347,8 +347,7 @@ jobs:
           npm install --save-dev @electron/packager
 
       - name: Build
-        run: |
-          npx @electron/packager . ElectronMinimalRepro --platform=linux --arch=x64
+        run: npx @electron/packager . ElectronMinimalRepro --platform=linux --arch=x64
 
       - name: Upload artifact
         uses: actions/upload-artifact@v7
@@ -376,8 +375,7 @@ jobs:
           npm install --save-dev @electron/packager
 
       - name: Build
-        run: |
-          npx @electron/packager . ElectronMinimalRepro --platform=win32 --arch=x64
+        run: npx @electron/packager . ElectronMinimalRepro --platform=win32 --arch=x64
 
       - name: Upload artifact
         uses: actions/upload-artifact@v7
@@ -405,8 +403,7 @@ jobs:
           bundle install
 
       - name: Build
-        run: |
-          bundle exec jekyll build
+        run: bundle exec jekyll build
 
       - name: Update gems & Build
         run: |
@@ -418,19 +415,37 @@ jobs:
   ut99-renderers:
     runs-on: ubuntu-latest
     steps:
-      - name: Download
+      - name: Download renderers
         run: |
           wget https://www.cwdohnal.com/utglr/utglr36.zip
+          wget https://www.cwdohnal.com/utglr/utglr37.zip
           wget https://www.cwdohnal.com/utglr/utd3d9r13.zip
 
-      - name: Upload OpenGL renderer
+      - name: Download patch
+        run: wget https://github.com/OldUnreal/UnrealTournamentPatches/releases/download/v469e/OldUnreal-UTPatch469e-Windows-x86.zip
+
+      - name: Upload OpenGL renderer (version 3.6)
         uses: actions/upload-artifact@v7
         with:
           path: utglr36.zip
           archive: false
 
-      - name: Upload Direct3D9 renderer
+      - name: Upload OpenGL renderer (version 3.7)
+        uses: actions/upload-artifact@v7
+        with:
+          path: utglr37.zip
+          archive: false
+
+      - name: Upload Direct3D9 renderer (version 1.3)
         uses: actions/upload-artifact@v7
         with:
           path: utd3d9r13.zip
           archive: false
+
+      - name: Extract
+        run: |
+          unzip utglr36.zip
+          unzip utglr37.zip
+          unzip utd3d9r13.zip
+          unzip OldUnreal-UTPatch469e-Windows-x86.zip
+          ls -l
