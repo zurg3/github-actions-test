@@ -448,4 +448,7 @@ jobs:
           unzip utglr37.zip -d utglr37
           unzip utd3d9r13.zip -d utd3d9r13
           unzip OldUnreal-UTPatch469e-Windows-x86.zip -d patch469e
-          ls -l
+          ls -l utglr36
+          ls -l utglr37
+          ls -l utd3d9r13
+          ls -l patch469e
