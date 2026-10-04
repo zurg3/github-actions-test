@@ -415,14 +415,11 @@ jobs:
   ut99-renderers:
     runs-on: ubuntu-latest
     steps:
-      - name: Download renderers
+      - name: Download
         run: |
           wget https://www.cwdohnal.com/utglr/utglr36.zip
           wget https://www.cwdohnal.com/utglr/utglr37.zip
           wget https://www.cwdohnal.com/utglr/utd3d9r13.zip
-
-      - name: Download patch
-        run: wget https://github.com/OldUnreal/UnrealTournamentPatches/releases/download/v469e/OldUnreal-UTPatch469e-Windows-x86.zip
 
       - name: Upload OpenGL renderer (version 3.6)
         uses: actions/upload-artifact@v7
@@ -441,26 +438,3 @@ jobs:
         with:
           path: utd3d9r13.zip
           archive: false
-
-      - name: Extract
-        run: |
-          unzip utglr36.zip -d utglr36
-          unzip utglr37.zip -d utglr37
-          unzip utd3d9r13.zip -d utd3d9r13
-          unzip OldUnreal-UTPatch469e-Windows-x86.zip -d patch469e
-
-      - name: Print checksums
-        run: |
-          du utglr36/OpenGLDrv.dll
-          sha256sum utglr36/OpenGLDrv.dll
-          du utglr37/OpenGLDrv.dll
-          sha256sum utglr37/OpenGLDrv.dll
-          du utd3d9r13/D3D9Drv.dll
-          sha256sum utd3d9r13/D3D9Drv.dll
-          du patch469e/System/OpenGLDrv.dll
-          sha256sum patch469e/System/OpenGLDrv.dll
-          du patch469e/System/D3D9Drv.dll
-          sha256sum patch469e/System/D3D9Drv.dll
-
-      - name: Show default config
-        run: cat patch469e/System/Default.ini
