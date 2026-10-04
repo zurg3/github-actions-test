@@ -451,10 +451,15 @@ jobs:
 
       - name: Print checksums
         run: |
+          du utglr36/OpenGLDrv.dll
           sha256sum utglr36/OpenGLDrv.dll
+          du utglr37/OpenGLDrv.dll
           sha256sum utglr37/OpenGLDrv.dll
+          du utd3d9r13/D3D9Drv.dll
           sha256sum utd3d9r13/D3D9Drv.dll
+          du patch469e/System/OpenGLDrv.dll
           sha256sum patch469e/System/OpenGLDrv.dll
+          du patch469e/System/D3D9Drv.dll
           sha256sum patch469e/System/D3D9Drv.dll
 
       - name: Show default config
